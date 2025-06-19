@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Bytefix Homepage
 
 This repository contains the HTML code for the Bytefix organization's homepage, designed to be a clean, modern, and dark-themed website with blue/purple highlights. Bytefix is a non-profit organization focused on helping people fix tech issues by connecting them to volunteers and building computer literacy in communities.
@@ -66,7 +65,3 @@ You can easily customize this homepage by editing the `index.html` file:
 * **Images:** Update the `src` attribute of the `<img>` tags to use your own images. The current `placehold.co` URLs are placeholders.
 
 * **Navigation:** Add or remove navigation links in the `<header>` section as needed.
-=======
-# bytefix-web.github.io
-Homepage for the Bytefix organization
->>>>>>> f9a99ade164238aeb4d2c8cb5087b5ed38f5977d
