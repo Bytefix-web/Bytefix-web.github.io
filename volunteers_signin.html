@@ -108,16 +108,16 @@
         >
           Volunteers Sign In
         </h2>
-        <!-- Volunteer Sign In Form with Username and Password -->
+        <!-- Volunteer Sign In Form with Email and Password -->
         <form action="">
           <div class="mb-4">
-            <label for="username" class="block text-lg font-semibold mb-2"
-              >Username:</label
+            <label for="Email" class="block text-lg font-semibold mb-2"
+              >Email:</label
             >
             <input
               type="text"
-              id="username"
-              name="username"
+              id="Email"
+              name="Email"
               class="w-full p-2 border border-gray-300 rounded-lg"
             />
           </div>
@@ -130,6 +130,14 @@
               id="password"
               name="password"
               class="w-full p-2 border border-gray-300 rounded-lg"
+            />
+          </div>
+          <button
+            type="submit"
+            class="px-8 py-3 bg-indigo-600 text-white font-semibold rounded-md shadow-lg hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:scale-105"
+          >
+            Sign In
+          </button>
         </form>
       </div>
     </main>
@@ -147,8 +155,15 @@
 
 <script type="module">
   // Import the functions you need from the SDKs you need
+  // Use the specific CDN URL for the authentication module
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
+  import {
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+  } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js"; // Corrected import for auth
+
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -161,11 +176,93 @@
     storageBucket: "bytefix-ec15b.firebasestorage.app",
     messagingSenderId: "505385365834",
     appId: "1:505385365834:web:30cb0dfed96cdabe6551b3",
-    measurementId: "G-05RJS0F69F"
+    measurementId: "G-05RJS0F69F",
   };
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+
+  // Assuming 'app' is your initialized Firebase app instance (e.g., from initializeApp(firebaseConfig);)
+  // If 'app' isn't globally available, make sure to get it or pass it.
+  // Example: const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app); // Get the Auth service instance from your app
+
+  // 2. Get references to your HTML form elements
+  const EmailInput = document.getElementById("Email");
+  const passwordInput = document.getElementById("password");
+  const signInButton = document.querySelector('button[type="submit"]'); // Selects your Sign In button
+
+  // Optional: A place in your HTML to display messages (e.g., success, errors)
+  // You might want to add <p id="auth-message"></p> somewhere in your HTML
+  const authMessage = document.getElementById("auth-message");
+  function displayMessage(message) {
+    if (authMessage) {
+      authMessage.textContent = message;
+    } else {
+      console.log(message); // Fallback to console if no message element
+    }
+  }
+
+  // 3. Listen for authentication state changes (this is super important!)
+  // This function runs whenever the user's sign-in status changes.
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in!
+      displayMessage(`Welcome, ${user.email}! You're logged in.`);
+      console.log("User signed in:", user.email);
+
+      // redirect user to volunteer terminal, nesting their email in the URL
+      window.location.href = "./volunteer_terminal.html?email=" + user.email;
+    } else {
+      // User is signed out.
+      displayMessage("Please sign in.");
+      console.log("No user signed in.");
+      // Show the login form.
+    }
+  });
+
+  // 4. Handle the form submission for signing in
+  signInButton.addEventListener("click", async (event) => {
+    event.preventDefault(); // Stop the browser from refreshing the page on form submission
+
+    const email = EmailInput.value;
+    const password = passwordInput.value;
+
+    if (!email || !password) {
+      displayMessage("Please enter both email and password.");
+      return;
+    }
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      // The onAuthStateChanged listener above will handle showing success message/UI updates.
+      console.log("Sign-in successful!");
+      passwordInput.value = ""; // Clear password field for security
+    } catch (error) {
+      // Handle specific errors for a better user experience
+      let errorMessage = "An error occurred during sign-in.";
+      switch (error.code) {
+        case "auth/user-not-found":
+          errorMessage = "No user found with this email.";
+          break;
+        case "auth/wrong-password":
+          errorMessage = "Incorrect password.";
+          break;
+        case "auth/invalid-email":
+          errorMessage = "Invalid email format.";
+          break;
+        default:
+          errorMessage = `Error: ${error.message} (Code: ${error.code})`;
+          break;
+      }
+      displayMessage(errorMessage);
+      console.error("Sign-in error:", error.code, error.message);
+    }
+  });
 </script>
 </html>

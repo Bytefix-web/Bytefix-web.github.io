@@ -285,21 +285,18 @@
         </p>
         <p class="text-2xl font-semibold text-indigo-800">+1 346 715 7635</p>
         <!-- Contact Form Placeholder (can be expanded later) -->
-        <form id="contact-form" class="mt-8 space-y-4">
+        <form class="mt-8 space-y-4">
           <input
-            id="name"
             type="text"
             placeholder="Your Name"
             class="w-full p-3 border border-indigo-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white bg-opacity-70 text-gray-800"
           />
           <input
-            id="email"
             type="email"
             placeholder="Your Email"
             class="w-full p-3 border border-indigo-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white bg-opacity-70 text-gray-800"
           />
           <textarea
-            id="message"
             placeholder="Your Message"
             rows="5"
             class="w-full p-3 border border-indigo-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white bg-opacity-70 text-gray-800"
@@ -310,9 +307,8 @@
           >
             Send Message
           </button>
-        </form>          
-        </div>
-        </div>
+        </form>
+      </div>
     </section>
 
     <!-- Footer Section -->
@@ -324,95 +320,5 @@
         <p>Empowering communities, one fix at a time.</p>
       </div>
     </footer>
-      <script type="module">
-    // Import the functions you need from the SDKs you need
-    // Use the specific CDN URL for the authentication module
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
-
-    import {
-      getAuth,
-      signInWithEmailAndPassword,
-      onAuthStateChanged,
-    } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js"; // Corrected import for auth
-    // Import Firestore SDKs
-    import {
-      getFirestore,
-      collection,
-      addDoc,
-      getDocs,
-      doc,
-      setDoc,
-    } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
-  
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyDk5berY8qJUp01H7CgfAGief-gFHBFvNA",
-      authDomain: "bytefix-ec15b.firebaseapp.com",
-      projectId: "bytefix-ec15b",
-      storageBucket: "bytefix-ec15b.firebasestorage.app",
-      messagingSenderId: "505385365834",
-      appId: "1:505385365834:web:30cb0dfed96cdabe6551b3",
-      measurementId: "G-05RJS0F69F",
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db = getFirestore(app); // Get the Firestore service instance
-
-    // Get references to HTML elements
-    const requestForm = document.getElementById('contact-form');
-const nameInput = document.getElementById('name');
-const emailInput = document.getElementById('email');
-const messageInput = document.getElementById('message');
-
-// Attach an event listener to your form's submit event
-if (requestForm && nameInput && emailInput && messageInput) {
-  requestForm.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Prevent the browser's default form submission (which reloads the page)
-
-    // Grab the values from your input fields
-    const name = nameInput.value;
-    const email = emailInput.value;
-    const message = messageInput.value;
-
-    // Basic client-side validation (optional, but good practice!)
-    if (!name || !email || !message) {
-      alert('Please make sure all fields are filled out!');
-      return; // Stop the function if validation fails
-    }
-
-    try {
-      // Use addDoc to add a new document to the "requests" collection.
-      // We'll automatically generate a timestamp using Date.now().
-      const docRef = await addDoc(collection(db, 'requests'), {
-        name: name,
-        email: email,
-        message: message,
-        sentAt: Date.now() // This will store the current time in milliseconds since the epoch
-      });
-
-      console.log("Success! Document written with ID: ", docRef.id);
-      alert('Your request has been sent! We\'ll get back to you soon.');
-
-      // Clear the form fields after successful submission
-      nameInput.value = '';
-      emailInput.value = '';
-      messageInput.value = '';
-
-    } catch (error) {
-      console.error("Oops! Error adding document: ", error);
-      alert('There was an issue sending your request. Please try again!');
-    }
-  });
-} else {
-  console.warn("Could not find all required HTML elements (requestForm, nameInput, emailInput, messageInput). Make sure your HTML structure matches!");
-}
-  </script>
   </body>
 </html>
