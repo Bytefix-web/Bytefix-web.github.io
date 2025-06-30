@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
+    <style type="stylesheet" src="index.css"></style>
     <style>
       /* Basic reset for consistent styling */
       * {
@@ -89,7 +90,7 @@
           </li>
           <li>
             <a
-              href="./volunteers_signin.html"
+              href="./volunteers.html"
               class="text-gray-700 hover:text-indigo-600 transition duration-300 ease-in-out font-medium"
               >Volunteers</a
             >
@@ -389,7 +390,7 @@ if (requestForm && nameInput && emailInput && messageInput) {
 
     try {
       // Generate a timestamp using Date.now()
-      const timestamp = Date.now();
+      const timestamp = Date.now().toString();
       // Use addDoc to add a new document to the "requests" collection.
       // We'll automatically generate a timestamp using Date.now().
       const docRef = await setDoc(doc(db, 'requests', timestamp), {
