@@ -388,9 +388,11 @@ if (requestForm && nameInput && emailInput && messageInput) {
     }
 
     try {
+      // Generate a timestamp using Date.now()
+      const timestamp = Date.now();
       // Use addDoc to add a new document to the "requests" collection.
       // We'll automatically generate a timestamp using Date.now().
-      const docRef = await addDoc(collection(db, 'requests', Date.now().toString()), {
+      const docRef = await setDoc(doc(db, 'requests', timestamp), {
         name: name,
         email: email,
         message: message,
