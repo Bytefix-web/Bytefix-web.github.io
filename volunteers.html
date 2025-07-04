@@ -622,19 +622,36 @@
         const dashboard = document.getElementById("dashboard");
 
         // Now, access the db collection "volunteers", and fetch the document with the user's email as the document ID
-        const userRef = doc(db, "volunteers", user.email.trim());
+        const userRef = doc(db, "volunteers", user.email.toString());
+        getDoc(userRef)
+          .then((doc) => {
+            if (doc.exists()) {
+              console.log("User document found:", doc.data());
+            } else {
+              console.warn("User document not found:", user.email.toString());
+            }
+          })
+          .catch((error) => {
+            console.error("Error retrieving user document:", error);
+          });
 
         // From the document, take the "name" field and display it in the dashboard, and concatenate the "roles" array into a comma-separated string
-        getDoc(userRef).then((doc) => {
-          if (doc.exists()) {
-            console.log("User document found:", doc.data());
-            const userData = doc.data();
-            const nameElement = document.getElementById("user-name");
-            const rolesElement = document.getElementById("user-roles");
-            nameElement.textContent = userData.name;
-            rolesElement.textContent = userData.roles.join(", ");
-          }
-        });
+        getDoc(userRef)
+          .then((doc) => {
+            if (doc.exists()) {
+              console.log("User document found:", doc.data());
+              const userData = doc.data();
+              const nameElement = document.getElementById("user-name");
+              const rolesElement = document.getElementById("user-roles");
+              nameElement.textContent = userData.name;
+              rolesElement.textContent = userData.roles.join(", ");
+            } else {
+              console.error("User document not found:", user.email);
+            }
+          })
+          .catch((error) => {
+            console.error("Failed to get user document:", error);
+          });
 
         if (volunteersSignin && dashboard) {
           volunteersSignin.classList.add("hidden");
