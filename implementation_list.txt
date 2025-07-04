@@ -1,0 +1,208 @@
+<!-- Analytics Content -->
+        <div id="analytics-content" class="tool-content hidden">
+          <h2 class="text-3xl font-semibold text-gray-900 mb-6">
+            Analytics Overview
+          </h2>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3 class="text-xl font-medium text-gray-700 mb-4">
+                Website Traffic
+              </h3>
+              <p class="text-gray-600">
+                Graph showing daily unique visitors (placeholder).
+              </p>
+              <div
+                class="h-48 bg-gray-200 rounded-md flex items-center justify-center text-gray-500"
+              >
+                [Chart Placeholder: Traffic Data]
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3 class="text-xl font-medium text-gray-700 mb-4">
+                Sales Performance
+              </h3>
+              <p class="text-gray-600">
+                Bar chart of monthly sales (placeholder).
+              </p>
+              <div
+                class="h-48 bg-gray-200 rounded-md flex items-center justify-center text-gray-500"
+              >
+                [Chart Placeholder: Sales Data]
+              </div>
+            </div>
+            <div
+              class="bg-white p-6 rounded-lg shadow-md col-span-1 lg:col-span-2"
+            >
+              <h3 class="text-xl font-medium text-gray-700 mb-4">
+                User Demographics
+              </h3>
+              <p class="text-gray-600">
+                Detailed breakdown of user demographics.
+              </p>
+              <ul class="list-disc list-inside text-gray-600 space-y-2">
+                <li>
+                  Age Distribution: 18-24 (20%), 25-34 (40%), 35-44 (25%), 45+
+                  (15%)
+                </li>
+                <li>
+                  Geographic Locations: North America (60%), Europe (20%), Asia
+                  (15%), Other (5%)
+                </li>
+                <li>Device Usage: Desktop (55%), Mobile (40%), Tablet (5%)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reports Content -->
+        <div id="reports-content" class="tool-content hidden">
+          <h2 class="text-3xl font-semibold text-gray-900 mb-6">
+            Generated Reports
+          </h2>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-medium text-gray-700 mb-4">
+              Available Reports
+            </h3>
+            <ul class="space-y-4">
+              <li
+                class="flex justify-between items-center p-3 border border-gray-200 rounded-lg"
+              >
+                <span class="font-medium text-gray-700"
+                  >Monthly Performance Report - May 2025</span
+                >
+                <button
+                  class="px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 transition duration-300 ease-in-out"
+                >
+                  Download PDF
+                </button>
+              </li>
+              <li
+                class="flex justify-between items-center p-3 border border-gray-200 rounded-lg"
+              >
+                <span class="font-medium text-gray-700"
+                  >Annual Marketing Summary - 2024</span
+                >
+                <button
+                  class="px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 transition duration-300 ease-in-out"
+                >
+                  Download PDF
+                </button>
+              </li>
+              <li
+                class="flex justify-between items-center p-3 border border-gray-200 rounded-lg"
+              >
+                <span class="font-medium text-gray-700"
+                  >Customer Feedback Analysis - Q1 2025</span
+                >
+                <button
+                  class="px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 transition duration-300 ease-in-out"
+                >
+                  Download CSV
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Settings Content -->
+        <div id="settings-content" class="tool-content hidden">
+          <h2 class="text-3xl font-semibold text-gray-900 mb-6">
+            Account Settings
+          </h2>
+          <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h3 class="text-xl font-medium text-gray-700 mb-4">
+              Profile Information
+            </h3>
+            <form class="space-y-4">
+              <div>
+                <label
+                  for="name"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Full Name</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  value="Jane Doe"
+                />
+              </div>
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  value="jane.doe@example.com"
+                />
+              </div>
+              <button
+                type="submit"
+                class="px-5 py-2 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 transition duration-300 ease-in-out shadow-md"
+              >
+                Save Changes
+              </button>
+            </form>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-medium text-gray-700 mb-4">
+              Password Management
+            </h3>
+            <form class="space-y-4">
+              <div>
+                <label
+                  for="current-password"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Current Password</label
+                >
+                <input
+                  type="password"
+                  id="current-password"
+                  name="current-password"
+                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                />
+              </div>
+              <div>
+                <label
+                  for="new-password"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >New Password</label
+                >
+                <input
+                  type="password"
+                  id="new-password"
+                  name="new-password"
+                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                />
+              </div>
+              <div>
+                <label
+                  for="confirm-password"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Confirm New Password</label
+                >
+                <input
+                  type="password"
+                  id="confirm-password"
+                  name="confirm-password"
+                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                />
+              </div>
+              <button
+                type="submit"
+                class="px-5 py-2 bg-red-600 text-white font-medium rounded-md hover:bg-red-700 transition duration-300 ease-in-out shadow-md"
+              >
+                Update Password
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
