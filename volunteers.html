@@ -255,35 +255,6 @@
                 Reports
               </a>
             </li>
-            <li>
-              <a
-                href="#"
-                data-tool="settings"
-                class="tool-link flex items-center p-3 rounded-lg text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition duration-300 ease-in-out font-medium group"
-              >
-                <svg
-                  class="w-5 h-5 mr-3 text-gray-500 group-hover:text-indigo-500 transition duration-300 ease-in-out"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                  ></path>
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  ></path>
-                </svg>
-                Settings
-              </a>
-            </li>
           </ul>
         </nav>
       </aside>
@@ -298,20 +269,36 @@
           <h2 class="text-3xl font-semibold text-gray-900 mb-6">
             Overview Dashboard
           </h2>
+          <!-- Name of user and their roles -->
+          <div class="flex items-center mb-6">
+            <img
+              src="./images/avatar.jpg"
+              alt="User Avatar"
+              class="w-12 h-12 rounded-full mr-4"
+            />
+            <div>
+              <h3 id="user-name" class="text-xl font-semibold text-gray-700">
+                John Doe
+              </h3>
+              <p id="user-roles" class="text-gray-600">Volunteer</p>
+            </div>
+          </div>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="bg-white p-6 rounded-lg shadow-md">
               <h3 class="text-xl font-medium text-gray-700 mb-2">
-                Total Users
+                Queued requests
               </h3>
               <p class="text-4xl font-bold text-indigo-600">1,234</p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-md">
-              <h3 class="text-xl font-medium text-gray-700 mb-2">Revenue</h3>
-              <p class="text-4xl font-bold text-green-600">$56,789</p>
+              <h3 class="text-xl font-medium text-gray-700 mb-2">
+                Pending Requests
+              </h3>
+              <p class="text-4xl font-bold text-green-600">56,789</p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-md">
               <h3 class="text-xl font-medium text-gray-700 mb-2">
-                New Signups
+                Resolved Requests
               </h3>
               <p class="text-4xl font-bold text-yellow-600">87</p>
             </div>
@@ -568,6 +555,17 @@
       signInWithEmailAndPassword,
       onAuthStateChanged,
     } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js"; // Corrected import for auth
+    // Import Firestore SDKs
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      getDoc,
+      doc,
+      setDoc,
+      updateDoc,
+      deleteDoc,
+    } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -587,6 +585,7 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
+    const db = getFirestore(app);
 
     // Assuming 'app' is your initialized Firebase app instance (e.g., from initializeApp(firebaseConfig);)
     // If 'app' isn't globally available, make sure to get it or pass it.
@@ -615,12 +614,27 @@
       if (user) {
         // User is signed in!
         displayMessage(`Welcome, ${user.email}! You're logged in.`);
-        console.log("User signed in:", user.email);
+        console.log(db);
 
         // Add the hidden class to the form and remove it from the dashboard
 
         const volunteersSignin = document.getElementById("signin");
         const dashboard = document.getElementById("dashboard");
+
+        // Now, access the db collection "volunteers", and fetch the document with the user's email as the document ID
+        const userRef = doc(db, "volunteers", user.email.trim());
+
+        // From the document, take the "name" field and display it in the dashboard, and concatenate the "roles" array into a comma-separated string
+        getDoc(userRef).then((doc) => {
+          if (doc.exists()) {
+            console.log("User document found:", doc.data());
+            const userData = doc.data();
+            const nameElement = document.getElementById("user-name");
+            const rolesElement = document.getElementById("user-roles");
+            nameElement.textContent = userData.name;
+            rolesElement.textContent = userData.roles.join(", ");
+          }
+        });
 
         if (volunteersSignin && dashboard) {
           volunteersSignin.classList.add("hidden");
