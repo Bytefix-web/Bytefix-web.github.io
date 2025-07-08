@@ -24,7 +24,7 @@
       /* Apply Inter font family globally */
       body {
         font-family: "Inter", sans-serif;
-        background-color: #e0e7ff; /* A very light, soft blue-purple */
+        background-color: black; /* A very light, soft blue-purple */
         color: #374151;
         margin: 0;
         padding: 0;
@@ -641,6 +641,10 @@
             <td class="border-b border-gray-200 px-4 py-2">${request.message}</td>
             <td class="border-b border-gray-200 px-4 py-2">${request.status}</td>
           `;
+          // Add a click event listener to each row, to open the request in a new tab
+          row.addEventListener("click", () => {
+            window.open(`/request.html?id=${request.id}`, "_blank");
+          })
           return row;
         });
         requestRows.forEach((row) =>
