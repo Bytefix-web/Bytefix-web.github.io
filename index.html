@@ -7,6 +7,8 @@
     <link rel="icon" type="image/x-icon" href="./images/icon.png" />
     <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
     <!-- Google Fonts - Inter for modern typography -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
@@ -45,6 +47,40 @@
         background-position: center;
         background-repeat: no-repeat;
       }
+      .car {
+        position: relative;
+        width: 80%;
+        max-width: 600px;
+        overflow: hidden;
+      }
+      .img-wrap {
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+      .img-wrap img {
+        width: 100%;
+        height: auto;
+      }
+      .btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background: rgba(0, 0, 0, 0.8);
+      }
+      .prev {
+        left: 10px;
+      }
+      .next {
+        right: 10px;
+      }
     </style>
   </head>
   <body class="antialiased">
@@ -53,9 +89,11 @@
       class="pane w-full p-4 md:p-6 flex flex-col md:flex-row justify-between items-center mb-8 md:mb-12 mx-auto max-w-7xl mt-4 md:mt-8"
     >
       <!-- Site Title -->
-      <h1 class="text-4xl md:text-5xl font-bold text-indigo-700 mb-4 md:mb-0">
-        Bytefix
-      </h1>
+      <a href="./index.html">
+        <h1 class="text-4xl md:text-5xl font-bold text-indigo-700 mb-4 md:mb-0">
+          Bytefix
+        </h1>
+      </a>
       <!-- Navigation Menu -->
       <nav>
         <ul
@@ -128,45 +166,129 @@
       id="about"
       class="pane py-16 px-4 md:px-8 text-center mb-8 md:mb-12 mx-auto max-w-7xl"
     >
+      <section
+        id="board-of-directors"
+        class="pane py-16 px-4 md:px-8 text-center mb-8 md:mb-12 mx-auto max-w-7xl"
+      >
+        <div class="max-w-6xl mx-auto">
+          <h3 class="text-4xl font-bold text-indigo-700 mb-12">
+            Board of Directors
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Director 1 -->
+            <div
+              class="bg-white p-6 rounded-lg shadow-md flex flex-col justify-center items-center"
+            >
+              <img
+                src="./images/directors/image1.jpg"
+                alt="Director 1"
+                class="w-auto h-48 object-cover rounded-md mb-4"
+              />
+              <h4 class="text-2xl font-semibold text-indigo-700 mb-2">
+                Jade Chen
+              </h4>
+              <p class="text-gray-600 text-sm italic">
+                Founder, Site Director for Houston Hub
+              </p>
+              <br />
+              <p class="text-sm text-gray-700">
+                Jade Chen is the founder of ByteFix and serves as the Site
+                Director for the Houston Hub. He launched ByteFix to help close
+                the digital divide by providing free tech support and digital
+                literacy resources to underserved communities. With a background
+                in UIL Computer Science, Jade combines technical knowledge with
+                a strong sense of service. Outside of ByteFix, he’s a committed
+                ballet dancer and violinist for his church orchestra.
+              </p>
+            </div>
+            <!-- Director 2 -->
+            <div
+              class="bg-white p-6 rounded-lg shadow-md flex flex-col justify-center items-center"
+            >
+              <img
+                src="./images/directors/image2.jpg"
+                alt="Director 2"
+                class="w-auto h-48 object-cover rounded-md mb-4"
+              />
+              <h4 class="text-2xl font-semibold text-indigo-700 mb-2">
+                Sope Adejumo
+              </h4>
+              <p class="text-gray-600 text-sm italic">
+                Webmaster, Volunteer for Houston Hub
+              </p>
+              <br />
+              <p class="text-sm text-gray-700">
+                Sope Adejumo is the webmaster for ByteFix, who designed the
+                website you're viewing now, and keeps it running. He is a
+                volunteer for the Houston Hub, and is passionate about helping
+                those in need. He's passionate about tech and its applications
+                in fields ranging from astronomy to finance.Outside fo Bytefix,
+                he competes in Science Olympiad, and designs websites. You can
+                find him at
+                <a
+                  href="https://sopeadejumo.github.io"
+                  target="_blank"
+                  class="text-indigo-600 hover:underline"
+                  >sopeadejumo.github.io</a
+                >
+              </p>
+            </div>
+            <!-- Director 3 -->
+            <!-- <div
+              class="bg-white p-6 rounded-lg shadow-md flex flex-col justify-center items-center"
+            >
+              <img
+                src="./images/director3.jpg"
+                alt="Director 3"
+                class="w-full h-48 object-cover rounded-md mb-4"
+              />
+              <h4 class="text-2xl font-semibold text-indigo-700 mb-2">
+                Director Name 3
+              </h4>
+              <p class="text-gray-700">
+                Brief bio about Director 3. Highlight their key achievements and
+                roles in the company.
+              </p>
+            </div> -->
+          </div>
+        </div>
+      </section>
       <div class="max-w-6xl mx-auto">
         <h3 class="text-4xl font-bold text-indigo-700 mb-12">
           What are we about?
         </h3>
+        <!-- Board of Directors Section -->
+
         <div class="flex flex-col md:flex-row items-center gap-10">
           <!-- Image Placeholder -->
-          <div class="md:w-1/2">
-            <img
-              src="https://placehold.co/600x400/e0e7ff/6366f1?text=Community+Tech+Support"
-              alt="Community Tech Support"
-              class="rounded-lg shadow-lg w-full h-auto object-cover"
-              onerror="this.onerror=null; this.src='https://placehold.co/600x400/e0e7ff/6366f1?text=Image+Loading+Failed';"
-            />
-          </div>
-          <!-- Text Content -->
-          <div class="md:w-1/2 text-left space-y-6 text-lg text-gray-700">
-            <p>
-              Bytefix is a non-profit organization dedicated to bridging the
-              digital divide by offering free, accessible tech support and
-              fostering computer literacy within underserved communities. We
-              believe that everyone deserves the opportunity to navigate the
-              digital world with confidence, regardless of their background or
-              economic status.
-            </p>
-            <p>
-              Our model is simple yet powerful: we connect individuals facing
-              tech challenges with a network of passionate and knowledgeable
-              volunteers. These volunteers provide one-on-one assistance,
-              troubleshoot common issues, and offer guidance on essential
-              digital skills.
-            </p>
-            <p>
-              Beyond fixing immediate problems, Bytefix aims to build
-              sustainable tech independence. We host workshops, create
-              educational resources, and empower community members to become
-              their own tech advocates, creating a ripple effect of knowledge
-              and support.
-            </p>
-          </div>
+          <div class="car md:w-1/2"">
+          <div class="img-wrap"></div>
+          <button class="btn prev">‹</button>
+          <button class="btn next">›</button>
+        </div>
+        <!-- Text Content -->
+        <div class="md:w-1/2 text-left space-y-6 text-lg text-gray-700">
+          <p>
+            Bytefix is a non-profit organization dedicated to bridging the
+            digital divide by offering free, accessible tech support and
+            fostering computer literacy within underserved communities. We
+            believe that everyone deserves the opportunity to navigate the
+            digital world with confidence, regardless of their background or
+            economic status.
+          </p>
+          <p>
+            Our model is simple yet powerful: we connect individuals facing tech
+            challenges with a network of passionate and knowledgeable
+            volunteers. These volunteers provide one-on-one assistance,
+            troubleshoot common issues, and offer guidance on essential digital
+            skills.
+          </p>
+          <p>
+            Beyond fixing immediate problems, Bytefix aims to build sustainable
+            tech independence. We host workshops, create educational resources,
+            and empower community members to become their own tech advocates,
+            creating a ripple effect of knowledge and support.
+          </p>
         </div>
       </div>
     </section>
@@ -249,8 +371,14 @@
                 <strong>Houston, Texas</strong>
               </li>
               <li>
-                <strong>Virtual Support:</strong> Available nationwide for
-                select issues via online consultation.
+                <strong>India</strong>
+              </li>
+              <li>
+                <strong>Kazakhstan</strong>
+              </li>
+              <li>
+                <strong>Virtual Support:</strong> Available worldwide for select
+                issues via online consultation.
               </li>
             </ul>
             <p>
@@ -261,12 +389,7 @@
           </div>
           <!-- Image Placeholder -->
           <div class="md:w-1/2">
-            <img
-              src="https://placehold.co/600x400/e0e7ff/6366f1?text=Location+Map"
-              alt="Location Map"
-              class="rounded-lg shadow-lg w-full h-auto object-cover"
-              onerror="this.onerror=null; this.src='https://placehold.co/600x400/e0e7ff/6366f1?text=Image+Loading+Failed';"
-            />
+            <img src="./images/map.png" alt="Availability Map" class="w-full" />
           </div>
         </div>
       </div>
@@ -283,9 +406,8 @@
           Ready to get your tech fixed or want to volunteer? Contact us today!
         </p>
         <p class="text-2xl font-semibold text-indigo-800">
-          astrojade2016@gmail.com
+          contactbytefix@gmail.com
         </p>
-        <p class="text-2xl font-semibold text-indigo-800">+1 346 715 7635</p>
         <!-- Contact Form Placeholder (can be expanded later) -->
         <form id="contact-form" class="mt-8 space-y-4">
           <input
@@ -312,9 +434,8 @@
           >
             Send Message
           </button>
-        </form>          
-        </div>
-        </div>
+        </form>
+      </div>
     </section>
 
     <!-- Footer Section -->
@@ -326,98 +447,143 @@
         <p>Empowering communities, one fix at a time.</p>
       </div>
     </footer>
-      <script type="module">
-    // Import the functions you need from the SDKs you need
-    // Use the specific CDN URL for the authentication module
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-    import {
-      getAuth,
-      signInWithEmailAndPassword,
-      onAuthStateChanged,
-    } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js"; // Corrected import for auth
-    // Import Firestore SDKs
-    import {
-      getFirestore,
-      collection,
-      addDoc,
-      getDocs,
-      doc,
-      setDoc,
-    } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
-  
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      // Use the specific CDN URL for the authentication module
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
 
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyDk5berY8qJUp01H7CgfAGief-gFHBFvNA",
-      authDomain: "bytefix-ec15b.firebaseapp.com",
-      projectId: "bytefix-ec15b",
-      storageBucket: "bytefix-ec15b.firebasestorage.app",
-      messagingSenderId: "505385365834",
-      appId: "1:505385365834:web:30cb0dfed96cdabe6551b3",
-      measurementId: "G-05RJS0F69F",
-    };
+      import {
+        getAuth,
+        signInWithEmailAndPassword,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js"; // Corrected import for auth
+      // Import Firestore SDKs
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        getDocs,
+        doc,
+        setDoc,
+      } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db = getFirestore(app); // Get the Firestore service instance
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
 
-    // Get references to HTML elements
-    const requestForm = document.getElementById('contact-form');
-const nameInput = document.getElementById('name');
-const emailInput = document.getElementById('email');
-const messageInput = document.getElementById('message');
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyDk5berY8qJUp01H7CgfAGief-gFHBFvNA",
+        authDomain: "bytefix-ec15b.firebaseapp.com",
+        projectId: "bytefix-ec15b",
+        storageBucket: "bytefix-ec15b.firebasestorage.app",
+        messagingSenderId: "505385365834",
+        appId: "1:505385365834:web:30cb0dfed96cdabe6551b3",
+        measurementId: "G-05RJS0F69F",
+      };
 
-// Attach an event listener to your form's submit event
-if (requestForm && nameInput && emailInput && messageInput) {
-  requestForm.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Prevent the browser's default form submission (which reloads the page)
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const db = getFirestore(app); // Get the Firestore service instance
 
-    // Grab the values from your input fields
-    const name = nameInput.value;
-    const email = emailInput.value;
-    const message = messageInput.value;
+      // Get references to HTML elements
+      const requestForm = document.getElementById("contact-form");
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email");
+      const messageInput = document.getElementById("message");
 
-    // Basic client-side validation (optional, but good practice!)
-    if (!name || !email || !message) {
-      alert('Please make sure all fields are filled out!');
-      return; // Stop the function if validation fails
-    }
+      // Attach an event listener to your form's submit event
+      if (requestForm && nameInput && emailInput && messageInput) {
+        requestForm.addEventListener("submit", async (e) => {
+          e.preventDefault(); // Prevent the browser's default form submission (which reloads the page)
 
-    try {
-      // Generate a timestamp using Date.now()
-      const timestamp = Date.now().toString();
-      // Use addDoc to add a new document to the "requests" collection.
-      // We'll automatically generate a timestamp using Date.now().
-      const docRef = await setDoc(doc(db, 'requests', timestamp), {
-        name: name,
-        email: email,
-        message: message,
-        status: 'queued',
-        sentAt: Date.now() // This will store the current time in milliseconds since the epoch
+          // Grab the values from your input fields
+          const name = nameInput.value;
+          const email = emailInput.value;
+          const message = messageInput.value;
+
+          // Basic client-side validation (optional, but good practice!)
+          if (!name || !email || !message) {
+            alert("Please make sure all fields are filled out!");
+            return; // Stop the function if validation fails
+          }
+
+          try {
+            // Generate a timestamp using Date.now()
+            const timestamp = Date.now().toString();
+            // Use addDoc to add a new document to the "requests" collection.
+            // We'll automatically generate a timestamp using Date.now().
+            const docRef = await setDoc(doc(db, "requests", timestamp), {
+              name: name,
+              email: email,
+              message: message,
+              status: "queued",
+              sentAt: Date.now(), // This will store the current time in milliseconds since the epoch
+            });
+
+            console.log("Success! Document written.");
+            alert("Your request has been sent! We'll get back to you soon.");
+
+            // Clear the form fields after successful submission
+            nameInput.value = "";
+            emailInput.value = "";
+            messageInput.value = "";
+          } catch (error) {
+            console.error("Oops! Error adding document: ", error);
+            alert("There was an issue sending your request. Please try again!");
+          }
+        });
+      } else {
+        console.warn(
+          "Could not find all required HTML elements (requestForm, nameInput, emailInput, messageInput). Make sure your HTML structure matches!"
+        );
+      }
+
+      const prev = document.querySelector(".prev");
+      const next = document.querySelector(".next");
+      const wrap = document.querySelector(".img-wrap");
+
+      const imageSources = [
+        "./images/gallery/image1.png",
+        "./images/gallery/image2.jpg",
+      ];
+
+      imageSources.forEach((src) => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = "Gallery Image";
+        wrap.appendChild(img);
       });
 
-      console.log("Success! Document written.");
-      alert('Your request has been sent! We\'ll get back to you soon.');
+      let idx = 0;
+      const imgs = document.querySelectorAll(".img-wrap img");
 
-      // Clear the form fields after successful submission
-      nameInput.value = '';
-      emailInput.value = '';
-      messageInput.value = '';
+      function showImg() {
+        if (idx >= imgs.length) idx = 0;
+        if (idx < 0) idx = imgs.length - 1;
+        wrap.style.transform = `translateX(-${idx * 100}%)`;
+      }
 
-    } catch (error) {
-      console.error("Oops! Error adding document: ", error);
-      alert('There was an issue sending your request. Please try again!');
-    }
-  });
-} else {
-  console.warn("Could not find all required HTML elements (requestForm, nameInput, emailInput, messageInput). Make sure your HTML structure matches!");
-}
-  </script>
+      next.addEventListener("click", () => {
+        idx++;
+        showImg();
+      });
+
+      prev.addEventListener("click", () => {
+        idx--;
+        showImg();
+      });
+
+      setInterval(() => {
+        idx++;
+        showImg();
+      }, 3000);
+
+      showImg();
+    </script>
   </body>
 </html>
