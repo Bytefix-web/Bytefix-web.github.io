@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bytefix - Tech Support & Community Literacy</title>
+    <title>Bytefix - Navigating the Digital Universe</title>
     <link rel="icon" type="image/x-icon" href="./images/icon.png" />
     <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
-    <style type="stylesheet" src="index.css"></style>
+    <link rel="stylesheet" href="index.css">
     <style>
       /* Basic reset for consistent styling */
       * {
@@ -22,117 +22,181 @@
         padding: 0;
         box-sizing: border-box;
       }
+      
+      /* Space-themed color variables */
+      :root {
+        --space-black: #0a0e17;
+        --space-dark-blue: #0f1729;
+        --space-blue: #1a2b4a;
+        --space-purple: #2c1e4a;
+        --space-accent: #6366f1;
+        --space-accent-hover: #4f46e5;
+        --space-text: #e2e8f0;
+        --space-text-dark: #94a3b8;
+        --space-card-bg: rgba(15, 23, 42, 0.8);
+        --space-card-border: rgba(99, 102, 241, 0.3);
+      }
+      
       /* Apply Inter font family globally */
       body {
         font-family: "Inter", sans-serif;
-        /* Gentle background color */
+        background-color: var(--space-black);
         background-image: url("./images/bg.jpg");
-        background-size: contain;
-        background-repeat: repeat;
-        color: #374151; /* Dark gray for text for readability */
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        color: var(--space-text);
+        line-height: 1.6;
       }
-      /* The .pane class for large elements, giving them a distinct, soft look */
+      
+      /* The .pane class for large elements, giving them a distinct, corporate look */
       .pane {
-        background-color: rgba(
-          255,
-          255,
-          255,
-          0.5
-        ); /* Slightly transparent white */
-        border: 1px solid #c7d2fe; /* Light indigo border */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Soft shadow */
-        border-radius: 1rem; /* Rounded corners for all panes */
+        background-color: rgba(15, 23, 42, 0.75);
+        border: 1px solid var(--space-card-border);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        border-radius: 0.5rem;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        margin: 2rem auto;
       }
+      
       /* Custom background for the main hero section */
       .main-bg {
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        position: relative;
       }
+      
+      /* Subtle space particle effect */
+      .main-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 25%),
+                          radial-gradient(circle at 80% 30%, rgba(99, 102, 241, 0.1) 0%, transparent 20%);
+        z-index: -1;
+      }
+      
+      /* Image carousel styling */
       .car {
         position: relative;
-        width: 80%;
+        width: 90%;
         max-width: 600px;
         overflow: hidden;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        margin: 0 auto;
       }
+      
       .img-wrap {
         display: flex;
-        transition: transform 0.5s ease;
+        transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
       }
+      
       .img-wrap img {
         width: 100%;
         height: auto;
+        object-fit: cover;
       }
+      
       .btn {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        background: rgba(0, 0, 0, 0.5);
-        color: #fff;
+        background: rgba(15, 23, 42, 0.7);
+        color: white;
         border: none;
-        padding: 10px;
-        font-size: 16px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
         cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 10;
       }
+      
       .btn:hover {
-        background: rgba(0, 0, 0, 0.8);
+        background: var(--space-accent);
       }
+      
       .prev {
         left: 10px;
       }
+      
       .next {
         right: 10px;
+      }
+      
+      /* Card styling */
+      .card-bg {
+        background-color: var(--space-card-bg);
+        border: 1px solid var(--space-card-border);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .card-bg:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
       }
     </style>
   </head>
   <body class="antialiased">
     <!-- Header Section - Top navigation and branding -->
     <header
-      class="pane w-full p-4 md:p-6 flex flex-col md:flex-row justify-between items-center mb-8 md:mb-12 mx-auto max-w-7xl mt-4 md:mt-8"
+      class="sticky p-4 md:p-6 top-0 z-50 flex flex-col md:flex-row justify-between items-center bg-gradient-to-r from-[#0a0e17] to-[#1a2b4a] border-b border-[#6366f1]/20 backdrop-blur-sm"
     >
       <!-- Site Title -->
-      <a href="./index.html">
-        <h1 class="text-4xl md:text-5xl font-bold text-indigo-700 mb-4 md:mb-0">
+      <a href="./index.html" class="flex items-center">
+        <h1
+          class="text-3xl md:text-4xl font-bold text-white mb-2 md:mb-0 tracking-tight"
+        >
           Bytefix
         </h1>
       </a>
       <!-- Navigation Menu -->
-      <nav>
+      <nav class="mt-4 md:mt-0">
         <ul
-          class="flex flex-wrap justify-center gap-4 md:gap-8 text-lg md:text-xl"
+          class="flex flex-wrap justify-center gap-6 md:gap-8 text-base md:text-lg"
         >
           <li>
             <a
               href="#about"
-              class="text-black hover:text-indigo-600 transition duration-300 ease-in-out font-medium"
+              class="text-gray-300 hover:text-[#6366f1] transition duration-300 ease-in-out font-medium"
               >About Us</a
             >
           </li>
           <li>
             <a
               href="#goals"
-              class="text-black hover:text-indigo-600 transition duration-300 ease-in-out font-medium"
+              class="text-gray-300 hover:text-[#6366f1] transition duration-300 ease-in-out font-medium"
               >Our Goals</a
             >
           </li>
           <li>
             <a
               href="#availability"
-              class="text-black hover:text-indigo-600 transition duration-300 ease-in-out font-medium"
+              class="text-gray-300 hover:text-[#6366f1] transition duration-300 ease-in-out font-medium"
               >Where We Are</a
             >
           </li>
           <li>
             <a
               href="#contact"
-              class="text-black hover:text-indigo-600 transition duration-300 ease-in-out font-medium"
+              class="text-gray-300 hover:text-[#6366f1] transition duration-300 ease-in-out font-medium"
               >Get Help</a
             >
           </li>
           <li>
             <a
               href="./volunteers.html"
-              class="text-black hover:text-indigo-600 transition duration-300 ease-in-out font-medium"
+              class="px-4 py-2 bg-[#6366f1] text-white rounded-md hover:bg-[#4f46e5] transition duration-300 ease-in-out font-medium"
               >Volunteers</a
             >
           </li>
@@ -142,158 +206,164 @@
 
     <!-- Main Hero Section - Empowering Communities Message -->
     <main
-      class="pane main-bg h-auto py-20 px-4 md:px-8 text-center flex items-center justify-center mb-8 md:mb-12 mx-auto max-w-7xl"
+      class="relative min-h-[80vh] py-24 px-4 md:px-8 flex items-center justify-center mb-8 md:mb-12 mx-auto max-w-7xl overflow-hidden"
     >
-      <div class="bg-white bg-opacity-80 p-8 rounded-lg shadow-xl max-w-2xl">
+      <!-- Space-themed background elements -->
+      <div class="absolute inset-0 z-0">
+        <div class="absolute top-20 left-10 w-24 h-24 rounded-full bg-[#6366f1]/10 blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-32 h-32 rounded-full bg-[#4f46e5]/10 blur-3xl"></div>
+        <div class="absolute top-1/3 right-1/4 w-16 h-16 rounded-full bg-[#818cf8]/10 blur-2xl"></div>
+      </div>
+      
+      <div class="relative z-10 bg-gradient-to-br from-[#0f1729]/80 to-[#1a2b4a]/80 p-10 rounded-lg border border-[#6366f1]/20 backdrop-blur-md shadow-2xl max-w-3xl">
+        <div class="absolute -top-3 -left-3 w-6 h-6 rounded-full bg-[#6366f1]"></div>
+        <div class="absolute -bottom-3 -right-3 w-6 h-6 rounded-full bg-[#4f46e5]"></div>
+        
         <h2
-          class="text-4xl md:text-5xl font-bold text-indigo-800 mb-4 md:mb-6 leading-tight"
+          class="text-4xl md:text-5xl font-bold text-white mb-6 md:mb-8 leading-tight"
         >
-          Empowering Communities Through Tech Literacy
+          Empowering Communities Through <span class="text-[#6366f1]">Tech Literacy</span>
         </h2>
-        <p class="text-lg md:text-xl text-black mb-6 md:mb-8">
+        <p class="text-lg md:text-xl text-gray-300 mb-8 md:mb-10">
           Connecting you with skilled volunteers to solve your tech troubles and
-          build digital confidence.
+          build digital confidence in an increasingly complex digital universe.
         </p>
         <a
           href="#contact"
-          class="inline-block px-8 py-4 bg-indigo-600 text-white font-semibold rounded-full shadow-lg hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:scale-105"
+          class="inline-block px-8 py-4 bg-gradient-to-r from-[#6366f1] to-[#4f46e5] text-white font-semibold rounded-md shadow-lg hover:from-[#4f46e5] hover:to-[#4338ca] transition duration-300 ease-in-out transform hover:translate-y-[-2px]"
         >
           Find a Volunteer Today
         </a>
       </div>
     </main>
 
-    <!-- About Us Section -->
-    <section
-      id="about"
-      class="pane py-16 px-4 md:px-8 text-center mb-8 md:mb-12 mx-auto max-w-7xl"
-    >
-      <section
-        id="board-of-directors"
-        class="pane py-16 px-4 md:px-8 text-center mb-8 md:mb-12 mx-auto max-w-7xl"
-      >
-        <div class="max-w-6xl mx-auto">
-          <h3 class="text-4xl font-bold text-indigo-700 mb-12">
-            Board of Directors
-          </h3>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Director 1 -->
-            <div
-              class="bg-white p-6 rounded-lg shadow-md flex flex-col justify-center items-center"
-            >
-              <img
-                src="./images/directors/image1.jpg"
-                alt="Director 1"
-                class="w-auto h-48 object-cover rounded-md mb-4"
-              />
-              <h4 class="text-2xl font-semibold text-indigo-700 mb-2">
-                Jade Chen
-              </h4>
-              <p class="text-gray-600 text-sm italic">
-                Founder, Site Director for Houston Hub
-              </p>
-              <br />
-              <p class="text-sm text-black">
-                Jade Chen is the founder of ByteFix and serves as the Site
-                Director for the Houston Hub. He launched ByteFix to help close
-                the digital divide by providing free tech support and digital
-                literacy resources to underserved communities. With a background
-                in UIL Computer Science, Jade combines technical knowledge with
-                a strong sense of service. Outside of ByteFix, he’s a committed
-                ballet dancer and violinist for his church orchestra.
-              </p>
-            </div>
-            <!-- Director 2 -->
-            <div
-              class="bg-white p-6 rounded-lg shadow-md flex flex-col justify-center items-center"
-            >
-              <img
-                src="./images/directors/image2.jpg"
-                alt="Director 2"
-                class="w-auto h-48 object-cover rounded-md mb-4"
-              />
-              <h4 class="text-2xl font-semibold text-indigo-700 mb-2">
-                Sope Adejumo
-              </h4>
-              <p class="text-gray-600 text-sm italic">
-                Webmaster, Volunteer for Houston Hub
-              </p>
-              <br />
-              <p class="text-sm text-black">
-                Sope Adejumo is the webmaster for ByteFix, who designed the
-                website you're viewing now, and keeps it running. He is a
-                volunteer for the Houston Hub, and is passionate about helping
-                those in need. He's passionate about tech and its applications
-                in fields ranging from astronomy to finance. Outside fo Bytefix,
-                he competes in Science Olympiad, and designs websites. You can
-                find him at
-                <a
-                  href="https://sopeadejumo.github.io"
-                  target="_blank"
-                  class="text-indigo-600 hover:underline"
-                  >sopeadejumo.github.io</a
-                >
-              </p>
-            </div>
-            <!-- Director 3 -->
-            <!-- <div
-              class="bg-white p-6 rounded-lg shadow-md flex flex-col justify-center items-center"
-            >
-              <img
-                src="./images/director3.jpg"
-                alt="Director 3"
-                class="w-full h-48 object-cover rounded-md mb-4"
-              />
-              <h4 class="text-2xl font-semibold text-indigo-700 mb-2">
-                Director Name 3
-              </h4>
-              <p class="text-black">
-                Brief bio about Director 3. Highlight their key achievements and
-                roles in the company.
-              </p>
-            </div> -->
+    <!-- Board of Directors Section -->
+<section
+  id="about"
+  class="pane py-16 px-4 md:px-8 text-center mb-8 md:mb-12 mx-auto max-w-7xl"
+>
+  <div
+    id="board-of-directors"
+    class="py-8 px-4 md:px-8 text-center mb-12 mx-auto max-w-7xl"
+  >
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-3xl md:text-4xl font-bold text-[#6366f1] mb-4">
+        Board of Directors
+      </h3>
+      <p class="text-gray-400 mb-12 max-w-2xl mx-auto">
+        Meet the team behind Bytefix's mission to bridge the digital divide and empower communities
+      </p>
+
+      <!-- Grid container for director cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Director 1 Card -->
+        <div class="bg-gradient-to-br from-[#0f1729] to-[#1a2b4a] p-6 rounded-lg border border-[#6366f1]/20 shadow-xl flex flex-col md:flex-row gap-6 text-left items-start">
+          <img
+            src="./images/directors/image1.jpg"
+            alt="Jade Chen"
+            class="w-full md:w-48 h-auto md:h-48 object-cover rounded-lg flex-shrink-0 aspect-square"
+            onerror="this.onerror=null;this.src='https://placehold.co/192x192/0f1729/6366f1?text=Image+Error';"
+          />
+          <div class="flex-1"> <!-- flex-1 allows this div to take up remaining horizontal space -->
+            <h4 class="text-2xl font-semibold text-white mb-1">Jade Chen</h4>
+            <p class="text-[#6366f1] text-sm font-medium mb-4">Founder, Site Director for Houston Hub</p>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Jade Chen is the founder of ByteFix and serves as the Site
+              Director for the Houston Hub. He launched ByteFix to help close
+              the digital divide by providing free tech support and digital
+              literacy resources to underserved communities. With a background
+              in UIL Computer Science, Jade combines technical knowledge with
+              a strong sense of service. Outside of ByteFix, he’s a committed
+              ballet dancer and violinist for his church orchestra.
+            </p>
           </div>
         </div>
-      </section>
-      <div class="max-w-6xl mx-auto">
-        <h3 class="text-4xl font-bold text-indigo-700 mb-12">
-          What are we about?
-        </h3>
-        <!-- Board of Directors Section -->
 
-        <div class="flex flex-col md:flex-row items-center gap-10">
-          <!-- Image Placeholder -->
-          <div class="car md:w-1/2"">
+        <!-- Director 2 Card -->
+        <div class="bg-gradient-to-br from-[#0f1729] to-[#1a2b4a] p-6 rounded-lg border border-[#6366f1]/20 shadow-xl flex flex-col md:flex-row gap-6 text-left items-start">
+          <img
+            src="./images/directors/image2.jpg"
+            alt="Sope Adejumo"
+            class="w-full md:w-48 h-auto md:h-48 object-cover rounded-lg flex-shrink-0 aspect-square"
+            onerror="this.onerror=null;this.src='https://placehold.co/192x192/0f1729/6366f1?text=Image+Error';"
+          />
+          <div class="flex-1"> <!-- flex-1 allows this div to take up remaining horizontal space -->
+            <h4 class="text-2xl font-semibold text-white mb-1">Sope Adejumo</h4>
+            <p class="text-[#6366f1] text-sm font-medium mb-4">Webmaster, Volunteer for Houston Hub</p>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Sope Adejumo is the webmaster for ByteFix, who designed the website you're viewing now, and keeps it running. He is a volunteer for the Houston Hub, and is passionate about helping those in need. He's passionate about tech and its applications in fields ranging from astronomy to finance. Outside fo Bytefix, he competes in Science Olympiad, and designs websites. You can find him at <a href="https://sopeadejumo.github.io" target="_blank" class="text-[#6366f1] hover:text-[#818cf8] transition-colors">sopeadejumo.github.io</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Director 3 (commented out as in original) -->
+        <!-- <div
+          class="bg-white p-6 rounded-lg shadow-md flex flex-col justify-center items-center"
+        >
+          <img
+            src="./images/director3.jpg"
+            alt="Director 3"
+            class="w-full h-48 object-cover rounded-md mb-4"
+          />
+          <h4 class="text-2xl font-semibold text-indigo-700 mb-2">
+            Director Name 3
+          </h4>
+          <p class="text-black">
+            Brief bio about Director 3. Highlight their key achievements and
+            roles in the company.
+          </p>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Our Mission Section (remains unchanged as it was not part of the grid issue) -->
+  <div id="mission" class="max-w-6xl mx-auto mt-16">
+    <h3 class="text-3xl md:text-4xl font-bold text-[#6366f1] mb-4">
+      Our Mission
+    </h3>
+    <p class="text-gray-400 mb-12 max-w-2xl mx-auto">
+      Exploring the digital universe and bringing technology to everyone
+    </p>
+
+    <div class="flex flex-col md:flex-row items-center gap-12">
+      <!-- Image Placeholder -->
+      <div class="car md:w-1/2 relative">
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#6366f1]/30 to-[#4f46e5]/30 blur-md rounded-lg"></div>
+        <div class="relative bg-[#0f1729] rounded-lg overflow-hidden">
           <div class="img-wrap"></div>
           <button class="btn prev">‹</button>
           <button class="btn next">›</button>
         </div>
-        <!-- Text Content -->
-        <div class="md:w-1/2 text-left space-y-6 text-lg text-black">
-          <p>
-            Bytefix is a non-profit organization dedicated to bridging the
-            digital divide by offering free, accessible tech support and
-            fostering computer literacy within underserved communities. We
-            believe that everyone deserves the opportunity to navigate the
-            digital world with confidence, regardless of their background or
-            economic status.
-          </p>
-          <p>
-            Our model is simple yet powerful: we connect individuals facing tech
-            challenges with a network of passionate and knowledgeable
-            volunteers. These volunteers provide one-on-one assistance,
-            troubleshoot common issues, and offer guidance on essential digital
-            skills.
-          </p>
-          <p>
-            Beyond fixing immediate problems, Bytefix aims to build sustainable
-            tech independence. We host workshops, create educational resources,
-            and empower community members to become their own tech advocates,
-            creating a ripple effect of knowledge and support.
-          </p>
-        </div>
       </div>
-    </section>
+      <!-- Text Content -->
+      <div class="md:w-1/2 text-left space-y-6 text-base md:text-lg text-gray-300">
+        <p>
+          Bytefix is a non-profit organization dedicated to bridging the
+          digital divide by offering free, accessible tech support and
+          fostering computer literacy within underserved communities. We
+          believe that everyone deserves the opportunity to navigate the
+          digital world with confidence, regardless of their background or
+          economic status.
+        </p>
+        <p>
+          Our model is simple yet powerful: we connect individuals facing tech
+          challenges with a network of passionate and knowledgeable
+          volunteers. These volunteers provide one-on-one assistance,
+          troubleshoot common issues, and offer guidance on essential digital
+          skills.
+        </p>
+        <p>
+          Beyond fixing immediate problems, Bytefix aims to build sustainable
+          tech independence. We host workshops, create educational resources,
+          and empower community members to become their own tech advocates,
+          creating a ripple effect of knowledge and support.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <!-- Our Goals Section - Cards Layout -->
     <section
@@ -301,50 +371,64 @@
       class="pane py-16 px-4 md:px-8 text-center mb-8 md:mb-12 mx-auto max-w-7xl"
     >
       <div class="max-w-6xl mx-auto">
-        <h3 class="text-4xl font-bold text-indigo-700 mb-12">Our Goals</h3>
+        <h3 class="text-3xl md:text-4xl font-bold text-[#6366f1] mb-4">Our Mission Objectives</h3>
+        <p class="text-gray-400 mb-12 max-w-2xl mx-auto">
+          Navigating the digital space to bring technology to every corner of the world
+        </p>
+        
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <!-- Goal Card 1 -->
           <div
-            class="card-bg p-8 rounded-xl shadow-md bg-indigo-50 border border-indigo-200"
+            class="card-bg p-8 rounded-lg shadow-xl border border-[#6366f1]/20 relative overflow-hidden group"
           >
-            <h4 class="text-2xl font-semibold text-indigo-700 mb-4">
+            <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#6366f1]/10 to-transparent rounded-bl-3xl"></div>
+            <div class="absolute -bottom-2 -left-2 w-12 h-12 bg-[#6366f1]/5 rounded-full blur-md"></div>
+            
+            <h4 class="text-xl font-semibold text-white mb-4 relative z-10">
               Empowerment Through Support
             </h4>
-            <p class="text-black mb-2">
-              Provide direct tech assistance to individuals in need.
+            <p class="text-gray-300 mb-4 relative z-10">
+              Provide direct tech assistance to individuals in need, creating a network of digital support.
             </p>
-            <p class="text-gray-600 text-sm italic">
-              Goal: Achieving a 90% user satisfaction rate.
-            </p>
+            <div class="text-[#6366f1] text-sm font-medium mt-auto pt-4 border-t border-[#6366f1]/20 relative z-10">
+              Target: 90% user satisfaction rate
+            </div>
           </div>
+          
           <!-- Goal Card 2 -->
           <div
-            class="card-bg p-8 rounded-xl shadow-md bg-indigo-50 border border-indigo-200"
+            class="card-bg p-8 rounded-lg shadow-xl border border-[#6366f1]/20 relative overflow-hidden group"
           >
-            <h4 class="text-2xl font-semibold text-indigo-700 mb-4">
+            <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#6366f1]/10 to-transparent rounded-bl-3xl"></div>
+            <div class="absolute -bottom-2 -left-2 w-12 h-12 bg-[#6366f1]/5 rounded-full blur-md"></div>
+            
+            <h4 class="text-xl font-semibold text-white mb-4 relative z-10">
               Building Digital Skills
             </h4>
-            <p class="text-black mb-2">
-              Conduct workshops and training sessions to boost computer
-              literacy.
+            <p class="text-gray-300 mb-4 relative z-10">
+              Conduct workshops and training sessions to boost computer literacy and technological confidence.
             </p>
-            <p class="text-gray-600 text-sm italic">
-              Goal: Leading to a measurable increase in digital proficiency.
-            </p>
+            <div class="text-[#6366f1] text-sm font-medium mt-auto pt-4 border-t border-[#6366f1]/20 relative z-10">
+              Target: A quantifiable increase in digital proficiency through workshops and training sessions
+            </div>
           </div>
+          
           <!-- Goal Card 3 -->
           <div
-            class="card-bg p-8 rounded-xl shadow-md bg-indigo-50 border border-indigo-200"
+            class="card-bg p-8 rounded-lg shadow-xl border border-[#6366f1]/20 relative overflow-hidden group"
           >
-            <h4 class="text-2xl font-semibold text-indigo-700 mb-4">
+            <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#6366f1]/10 to-transparent rounded-bl-3xl"></div>
+            <div class="absolute -bottom-2 -left-2 w-12 h-12 bg-[#6366f1]/5 rounded-full blur-md"></div>
+            
+            <h4 class="text-xl font-semibold text-white mb-4 relative z-10">
               Expanding Our Reach
             </h4>
-            <p class="text-black mb-2">
-              Establish new community hubs and volunteer networks.
+            <p class="text-gray-300 mb-4 relative z-10">
+              Establish new community hubs and volunteer networks to reach more communities in need.
             </p>
-            <p class="text-gray-600 text-sm italic">
-              Goal: By Q4 of next year, we aim to have 15 active locations.
-            </p>
+            <div class="text-[#6366f1] text-sm font-medium mt-auto pt-4 border-t border-[#6366f1]/20 relative z-10">
+              Target: 15 active locations by Q4 2025
+            </div>
           </div>
         </div>
       </div>
@@ -356,31 +440,41 @@
       class="pane py-16 px-4 md:px-8 text-center mb-8 md:mb-12 mx-auto max-w-7xl"
     >
       <div class="max-w-6xl mx-auto">
-        <h3 class="text-4xl font-bold text-indigo-700 mb-12">
-          Where are we available?
+        <h3 class="text-3xl md:text-4xl font-bold text-[#6366f1] mb-4">
+          Our Locations
         </h3>
-        <div class="flex flex-col-reverse md:flex-row items-center gap-10">
+        <p class="text-gray-400 mb-12 max-w-2xl mx-auto">
+          Expanding across the digital universe to reach communities in need
+        </p>
+        
+        <div class="flex flex-col-reverse md:flex-row items-center gap-12">
           <!-- Text Content -->
-          <div class="md:w-1/2 text-left space-y-6 text-lg text-black">
+          <div class="md:w-1/2 text-left space-y-6 text-base md:text-lg text-gray-300">
             <p>
-              Bytefix is rapidly expanding its reach to help more communities.
+              Bytefix is rapidly expanding its reach to help more communities across the globe.
               We currently operate in several key locations, with plans to grow
               further. Our services are primarily offered through local
               community centers, libraries, and dedicated Bytefix hubs.
             </p>
-            <ul class="list-disc list-inside space-y-2">
-              <li>
-                <strong>Houston, Texas</strong>
+            <ul class="space-y-4">
+              <li class="flex items-center">
+                <div class="w-2 h-2 rounded-full bg-[#6366f1] mr-3"></div>
+                <span class="text-white font-medium">Houston, Texas</span>
               </li>
-              <li>
-                <strong>India</strong>
+              <li class="flex items-center">
+                <div class="w-2 h-2 rounded-full bg-[#6366f1] mr-3"></div>
+                <span class="text-white font-medium">India</span>
               </li>
-              <li>
-                <strong>Kazakhstan</strong>
+              <li class="flex items-center">
+                <div class="w-2 h-2 rounded-full bg-[#6366f1] mr-3"></div>
+                <span class="text-white font-medium">Kazakhstan</span>
               </li>
-              <li>
-                <strong>Virtual Support:</strong> Available worldwide for select
-                issues via online consultation.
+              <li class="flex items-start">
+                <div class="w-2 h-2 rounded-full bg-[#6366f1] mr-3 mt-1.5"></div>
+                <div>
+                  <span class="text-white font-medium">Virtual Support</span>
+                  <p class="text-gray-400 text-sm mt-1">Available worldwide for select issues via online consultation.</p>
+                </div>
               </li>
             </ul>
             <p>
@@ -389,9 +483,18 @@
               Bytefix to your area, please reach out.
             </p>
           </div>
-          <!-- Image Placeholder -->
-          <div class="md:w-1/2">
-            <img src="./images/map.png" alt="Availability Map" class="w-full" />
+          
+          <!-- Map Image -->
+          <div class="md:w-1/2 relative">
+            <div class="absolute -inset-1 bg-gradient-to-r from-[#6366f1]/30 to-[#4f46e5]/30 blur-md rounded-lg"></div>
+            <div class="relative bg-[#0f1729]/50 p-2 rounded-lg">
+              <img src="./images/map.png" alt="Bytefix Global Presence" class="w-full rounded-md" />
+              
+              <!-- Space-themed overlay elements -->
+              <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-[#6366f1] rounded-full animate-pulse"></div>
+              <div class="absolute top-1/3 right-1/3 w-2 h-2 bg-[#4f46e5] rounded-full animate-pulse" style="animation-delay: 0.5s"></div>
+              <div class="absolute bottom-1/4 right-1/4 w-2 h-2 bg-[#818cf8] rounded-full animate-pulse" style="animation-delay: 1s"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -402,51 +505,87 @@
       id="contact"
       class="pane py-16 px-4 md:px-8 text-center mb-8 md:mb-12 mx-auto max-w-7xl"
     >
-      <div class="max-w-2xl mx-auto space-y-6">
-        <h3 class="text-4xl font-bold text-indigo-700 mb-6">Get In Touch</h3>
-        <p class="text-lg md:text-xl text-black">
-          Ready to get your tech fixed or want to volunteer? Contact us today!
+      <div class="max-w-3xl mx-auto">
+        <h3 class="text-3xl md:text-4xl font-bold text-[#6366f1] mb-4">Connect With Us</h3>
+        <p class="text-gray-400 mb-12 max-w-2xl mx-auto">
+          Ready to get your tech fixed or want to join our mission? Reach out today!
         </p>
-        <p class="text-2xl font-semibold text-indigo-800">
-          contactbytefix@gmail.com
-        </p>
-        <!-- Contact Form Placeholder (can be expanded later) -->
-        <form id="contact-form" class="mt-8 space-y-4">
-          <input
-            id="name"
-            type="text"
-            placeholder="Your Name"
-            class="w-full p-3 border border-indigo-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white bg-opacity-70 text-gray-800"
-          />
-          <input
-            id="email"
-            type="email"
-            placeholder="Your Email"
-            class="w-full p-3 border border-indigo-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white bg-opacity-70 text-gray-800"
-          />
-          <textarea
-            id="message"
-            placeholder="Your Message"
-            rows="5"
-            class="w-full p-3 border border-indigo-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white bg-opacity-70 text-gray-800"
-          ></textarea>
-          <button
-            type="submit"
-            class="px-8 py-3 bg-indigo-600 text-white font-semibold rounded-md shadow-lg hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:scale-105"
-          >
-            Send Message
-          </button>
-        </form>
+        
+        <div class="bg-gradient-to-br from-[#0f1729] to-[#1a2b4a] p-8 rounded-lg border border-[#6366f1]/20 shadow-xl relative overflow-hidden">
+          <!-- Space-themed decorative elements -->
+          <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#6366f1]/10 to-transparent rounded-bl-full"></div>
+          <div class="absolute -bottom-4 -left-4 w-24 h-24 bg-[#6366f1]/5 rounded-full blur-xl"></div>
+          
+          <p class="text-xl text-white mb-2">
+            Email us directly at:
+          </p>
+          <p class="text-2xl font-semibold text-[#6366f1] mb-8 inline-block relative">
+            contactbytefix@gmail.com
+            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#6366f1]/50 to-transparent"></span>
+          </p>
+          
+          <!-- Contact Form -->
+          <form id="contact-form" class="mt-8 space-y-5 relative z-10">
+            <div class="flex flex-col md:flex-row gap-5">
+              <input
+                id="name"
+                type="text"
+                placeholder="Your Name"
+                class="w-full p-3 bg-[#0a0e17] border border-[#6366f1]/30 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6366f1] text-gray-200 placeholder-gray-500"
+              />
+              <input
+                id="email"
+                type="email"
+                placeholder="Your Email"
+                class="w-full p-3 bg-[#0a0e17] border border-[#6366f1]/30 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6366f1] text-gray-200 placeholder-gray-500"
+              />
+            </div>
+            <textarea
+              id="message"
+              placeholder="Your Message"
+              rows="4"
+              class="w-full p-3 bg-[#0a0e17] border border-[#6366f1]/30 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6366f1] text-gray-200 placeholder-gray-500"
+            ></textarea>
+            <button
+              type="submit"
+              class="px-8 py-3 bg-gradient-to-r from-[#6366f1] to-[#4f46e5] text-white font-medium rounded-md shadow-lg hover:from-[#4f46e5] hover:to-[#4338ca] transition duration-300 ease-in-out transform hover:translate-y-[-2px] w-full md:w-auto"
+            >
+              Send Message
+            </button>
+          </form>
       </div>
     </section>
 
     <!-- Footer Section -->
     <footer
-      class="pane py-8 px-4 md:px-8 text-center text-black text-md mx-auto max-w-7xl mb-4"
+      class="py-12 px-4 md:px-8 text-center mx-auto max-w-7xl mb-4 relative overflow-hidden"
     >
-      <div class="max-w-6xl mx-auto space-y-2">
-        <p>&copy; 2025 Bytefix. All rights reserved.</p>
-        <p>Empowering communities, one fix at a time.</p>
+      <div class="absolute inset-0 bg-gradient-to-b from-[#0a0e17]/0 to-[#0a0e17] -z-10"></div>
+      
+      <!-- Space-themed decorative elements -->
+      <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#6366f1]/30 to-transparent"></div>
+      <div class="absolute bottom-0 left-1/4 w-1 h-1 bg-[#6366f1] rounded-full opacity-70"></div>
+      <div class="absolute bottom-2 left-1/3 w-1 h-1 bg-[#4f46e5] rounded-full opacity-50"></div>
+      <div class="absolute bottom-4 left-2/3 w-1 h-1 bg-[#818cf8] rounded-full opacity-30"></div>
+      
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 pb-8 border-b border-[#6366f1]/10">
+          <div class="flex items-center mb-6 md:mb-0">
+            <h2 class="text-2xl font-bold text-white">Bytefix</h2>
+          </div>
+          
+          <div class="flex gap-8">
+            <a href="#about" class="text-gray-400 hover:text-[#6366f1] transition-colors">About</a>
+            <a href="#goals" class="text-gray-400 hover:text-[#6366f1] transition-colors">Goals</a>
+            <a href="#availability" class="text-gray-400 hover:text-[#6366f1] transition-colors">Locations</a>
+            <a href="#contact" class="text-gray-400 hover:text-[#6366f1] transition-colors">Contact</a>
+          </div>
+        </div>
+        
+        <div class="text-gray-400 text-sm">
+          <p>&copy; 2025 Bytefix. All rights reserved.</p>
+          <p class="mt-2">Empowering communities across the digital universe, one fix at a time.</p>
+        </div>
       </div>
     </footer>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -586,6 +725,59 @@
       }, 3000);
 
       showImg();
+      
+      // Create dynamic star field effect
+      function createStarField() {
+        const body = document.body;
+        const numStars = 50;
+        
+        for (let i = 0; i < numStars; i++) {
+          const star = document.createElement('div');
+          star.className = 'star';
+          
+          // Random position
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.top = `${Math.random() * 100}%`;
+          
+          // Random size (1-3px)
+          const size = Math.random() * 2 + 1;
+          star.style.width = `${size}px`;
+          star.style.height = `${size}px`;
+          
+          // Random animation delay
+          star.style.animationDelay = `${Math.random() * 4}s`;
+          
+          body.appendChild(star);
+        }
+      }
+      
+      // Add space-themed glow effect to headings
+      function addSpaceEffects() {
+        // Add glow effect to main headings
+        const headings = document.querySelectorAll('h2, h3');
+        headings.forEach(heading => {
+          if (heading.textContent.includes('Tech Literacy') || 
+              heading.textContent.includes('Mission') || 
+              heading.textContent.includes('Goals') || 
+              heading.textContent.includes('Presence')) {
+            heading.classList.add('space-glow');
+          }
+        });
+        
+        // Add gradient border to important elements
+        const importantElements = document.querySelectorAll('.text-[#6366f1]');
+        importantElements.forEach(element => {
+          if (element.tagName === 'P' || element.tagName === 'SPAN') {
+            element.classList.add('gradient-border');
+          }
+        });
+      }
+      
+      // Initialize space theme effects
+      window.addEventListener('DOMContentLoaded', () => {
+        createStarField();
+        addSpaceEffects();
+      });
     </script>
   </body>
 </html>
