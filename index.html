@@ -661,10 +661,10 @@ Maheshwari is a New Delhi-based marketing and design enthusiast with experience 
 
           try {
             // Generate a timestamp using Date.now()
-            timestamp = Date.now();
+            const timestamp = Date.now();
             // Use addDoc to add a new document to the "requests" collection.
             // We'll automatically generate a timestamp using Date.now().
-            const docRef = await setDoc(doc(db, "requests", timestamp), {
+            const docRef = await setDoc(doc(db, "requests", timestamp.toString()), {
               name: name,
               email: email,
               message: message,
