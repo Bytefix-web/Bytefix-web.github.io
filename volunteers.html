@@ -829,7 +829,7 @@
           row.style.cursor = "pointer";
           // Add a click event listener to each row, to open the request in a new tab
           row.addEventListener("click", () => {
-            window.open(`/request.html?id=${request.sentAt}`, "_blank");
+            window.open(`./request.html?id=${request.sentAt}`, "_blank");
           })
           return row;
         });

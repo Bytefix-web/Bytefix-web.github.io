@@ -265,28 +265,12 @@
           <div class="space-y-4">
             <div>
               <label for="communication-method" class="block text-indigo-300 mb-2">How did you communicate with the client?</label>
-              <select id="communication-method" class="w-full bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-3 text-white">
-                <option value="">Select communication method</option>
-                <option value="email">Email</option>
-                <option value="phone">Phone</option>
-                <option value="in-person">In-person</option>
-                <option value="video-call">Video Call</option>
-                <option value="other">Other</option>
-              </select>
+              <input type="text" id="communication-method" class="w-full bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-3 text-white" placeholder="Email, phone, in-person, etc.">
             </div>
             
             <div>
               <label for="tools-used" class="block text-indigo-300 mb-2">What tools did you use?</label>
-              <select id="tools-used" class="w-full bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-3 text-white">
-                <option value="">Select tools used</option>
-                <option value="hardware-diagnostics">Hardware Diagnostics</option>
-                <option value="software-troubleshooting">Software Troubleshooting</option>
-                <option value="virus-removal">Virus/Malware Removal</option>
-                <option value="data-recovery">Data Recovery</option>
-                <option value="software-installation">Software Installation</option>
-                <option value="training">Training/Education</option>
-                <option value="other">Other</option>
-              </select>
+              <input type="text" id="tools-used" class="w-full bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-3 text-white" placeholder="Hardware diagnostics, software troubleshooting, etc.">
             </div>
             
             <div>
@@ -439,10 +423,10 @@
       function updateUIBasedOnStatus(status) {
         // Enable/disable buttons based on current status
         if (status === 'queued') {
-          btnPending.disabled = false;
+          btnPending.textContent = "Mark as Pending";
           btnResolved.disabled = false;
         } else if (status === 'pending') {
-          btnPending.disabled = true;
+          btnPending.textContent = "Mark as Queued";
           btnResolved.disabled = false;
         } else if (status === 'resolved') {
           btnPending.disabled = true;
@@ -548,9 +532,16 @@
 
       // Event Listeners
       btnPending.addEventListener('click', () => {
-        updateRequestStatus('pending');
-        // Show log entry section when status is changed to pending
-        logEntrySection.classList.remove('hidden');
+        // Toggle between queued and pending status
+        if (currentRequest.status === 'queued') {
+          updateRequestStatus('pending');
+          // Show log entry section when status is changed to pending
+          logEntrySection.classList.remove('hidden');
+        } else if (currentRequest.status === 'pending') {
+          updateRequestStatus('queued');
+          // Hide log entry section when going back to queued
+          logEntrySection.classList.add('hidden');
+        }
       });
 
       btnResolved.addEventListener('click', () => {
@@ -568,9 +559,9 @@
       });
 
       btnSubmitLog.addEventListener('click', () => {
-        const communicationMethod = document.getElementById('communication-method').value;
-        const toolsUsed = document.getElementById('tools-used').value;
-        const logNotes = document.getElementById('log-notes').value;
+        const communicationMethod = document.getElementById('communication-method').value.trim();
+        const toolsUsed = document.getElementById('tools-used').value.trim();
+        const logNotes = document.getElementById('log-notes').value.trim();
         
         if (!communicationMethod || !toolsUsed || !logNotes) {
           alert('Please fill in all fields');
