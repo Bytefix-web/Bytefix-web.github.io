@@ -538,6 +538,12 @@ Maheshwari is a New Delhi-based marketing and design enthusiast with experience 
                 placeholder="Your Email"
                 class="w-full p-3 bg-[#0a0e17] border border-[#6366f1]/30 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6366f1] text-gray-200 placeholder-gray-500"
               />
+              <input
+              id="location"
+              type="text"
+              placeholder="Location"
+              class="w-full p-3 bg-[#0a0e17] border border-[#6366f1]/30 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6366f1] text-gray-200 placeholder-gray-500"
+            />
             </div>
             <textarea
               id="message"
@@ -644,6 +650,7 @@ Maheshwari is a New Delhi-based marketing and design enthusiast with experience 
           // Grab the values from your input fields
           const name = nameInput.value;
           const email = emailInput.value;
+          const location = document.getElementById("location").value; // Added location input
           const message = messageInput.value;
 
           // Basic client-side validation (optional, but good practice!)
@@ -654,13 +661,13 @@ Maheshwari is a New Delhi-based marketing and design enthusiast with experience 
 
           try {
             // Generate a timestamp using Date.now()
-            const timestamp = Date.now().toString();
             // Use addDoc to add a new document to the "requests" collection.
             // We'll automatically generate a timestamp using Date.now().
-            const docRef = await setDoc(doc(db, "requests", timestamp), {
+            const docRef = await setDoc(doc(db, "requests", Date.now().toString()), {
               name: name,
               email: email,
               message: message,
+              location: location, // Include the location field
               status: "queued",
               sentAt: Date.now(), // This will store the current time in milliseconds since the epoch
             });

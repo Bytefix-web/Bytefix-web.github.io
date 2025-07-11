@@ -407,29 +407,6 @@
             </li>
             <li>
               <a
-                href="#recent-activity"
-                data-tool="Recent Activity"
-                class="tool-link flex items-center p-3 rounded-lg text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition duration-300 ease-in-out font-medium group"
-              >
-                <svg
-                  class="w-5 h-5 mr-3 text-gray-500 group-hover:text-indigo-500 transition duration-300 ease-in-out"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 17v-2m3 2v-4m3 2v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  ></path>
-                </svg>
-                Recent Activity
-              </a>
-            </li>
-            <li>
-              <a
                 href="#account-settings"
                 data-tool="account"
                 class="tool-link flex items-center p-3 rounded-lg text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition duration-300 ease-in-out font-medium group"
@@ -578,55 +555,6 @@
                 </tbody>
               </table>
             </div>
-          </div>
-
-          <!-- Recent Activity -->
-          <div id="recent-activity" class="dashboard-card bg-white p-6 rounded-lg shadow-md border border-gray-100 mb-8">
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">
-              Recent Activity
-            </h3>
-            <ul class="divide-y divide-gray-100">
-              <li class="py-3 flex items-center justify-between">
-                <div class="flex items-center">
-                  <div class="p-2 bg-blue-100 rounded-full mr-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                      <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                  </div>
-                  <span class="text-gray-700">User John Doe signed up</span>
-                </div>
-                <span class="text-sm text-gray-500">2 hours ago</span>
-              </li>
-              <li class="py-3 flex items-center justify-between">
-                <div class="flex items-center">
-                  <div class="p-2 bg-purple-100 rounded-full mr-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                      <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                      <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                    </svg>
-                  </div>
-                  <span class="text-gray-700">New product "Pro Widget" launched</span>
-                </div>
-                <span class="text-sm text-gray-500">1 day ago</span>
-              </li>
-              <li class="py-3 flex items-center justify-between">
-                <div class="flex items-center">
-                  <div class="p-2 bg-green-100 rounded-full mr-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                      <polyline points="14 2 14 8 20 8"></polyline>
-                      <line x1="16" y1="13" x2="8" y2="13"></line>
-                      <line x1="16" y1="17" x2="8" y2="17"></line>
-                      <polyline points="10 9 9 9 8 9"></polyline>
-                    </svg>
-                  </div>
-                  <span class="text-gray-700">Report generated for Q2</span>
-                </div>
-                <span class="text-sm text-gray-500">3 days ago</span>
-              </li>
-            </ul>
           </div>
 
           <!-- Account Settings -->
@@ -898,9 +826,10 @@
             <td class="border-b border-gray-200 px-4 py-2">${request.message}</td>
             <td class="border-b border-gray-200 px-4 py-2">${request.status}</td>
           `;
+          row.style.cursor = "pointer";
           // Add a click event listener to each row, to open the request in a new tab
           row.addEventListener("click", () => {
-            window.open(`/request.html?id=${request.id}`, "_blank");
+            window.open(`/request.html?id=${request.sentAt}`, "_blank");
           })
           return row;
         });

@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bytefix - Request Details</title>
+    <link rel="icon" type="image/x-icon" href="./images/icon.png" />
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter for modern typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css">
+
+    <style>
+      /* Basic reset for consistent styling */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      /* Apply Inter font family globally */
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--space-dark-blue);
+        color: var(--space-text);
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* The .pane class for large elements with space theme */
+      .pane {
+        background-color: rgba(15, 23, 42, 0.7);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        border-radius: 1rem;
+        backdrop-filter: blur(10px);
+      }
+      
+      /* Custom background for the main hero section */
+      .main-bg {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      /* Status badge styling */
+      .status-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-transform: capitalize;
+      }
+      
+      .status-queued {
+        background-color: rgba(99, 102, 241, 0.2);
+        color: #6366f1;
+      }
+      
+      .status-pending {
+        background-color: rgba(16, 185, 129, 0.2);
+        color: #10b981;
+      }
+      
+      .status-resolved {
+        background-color: rgba(245, 158, 11, 0.2);
+        color: #f59e0b;
+      }
+      
+      /* Button styling */
+      .action-button {
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      
+      .button-primary {
+        background: linear-gradient(135deg, var(--space-accent), var(--space-accent-hover));
+        color: white;
+        border: none;
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+      }
+      
+      .button-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+      }
+      
+      .button-secondary {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--space-text);
+        border: 1px solid rgba(99, 102, 241, 0.3);
+      }
+      
+      .button-secondary:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+      }
+      
+      /* Dark mode classes */
+      .dark-mode {
+        background-color: #0f172a;
+        color: #e2e8f0;
+      }
+      
+      .dark-mode .request-card {
+        background-color: #1e293b;
+        border-color: #334155;
+        color: #e2e8f0;
+      }
+      
+      .dark-mode h1, 
+      .dark-mode h2, 
+      .dark-mode h3, 
+      .dark-mode h4 {
+        color: #e2e8f0;
+      }
+      
+      .dark-mode p {
+        color: #cbd5e1;
+      }
+      
+      .dark-mode .text-gray-700,
+      .dark-mode .text-gray-800,
+      .dark-mode .text-gray-900 {
+        color: #e2e8f0 !important;
+      }
+      
+      .dark-mode .text-gray-500,
+      .dark-mode .text-gray-600 {
+        color: #94a3b8 !important;
+      }
+      
+      .dark-mode .border-gray-100,
+      .dark-mode .border-gray-200 {
+        border-color: #334155 !important;
+      }
+      
+      .dark-mode .bg-white {
+        background-color: #1e293b !important;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <!-- Header Section - Top navigation and branding -->
+    <header
+      class="pane w-full p-4 md:p-6 flex flex-col md:flex-row justify-between items-center mb-8 md:mb-12 mx-auto max-w-7xl mt-4 md:mt-8"
+    >
+      <!-- Site Title -->
+      <a href="./index.html">
+        <h1 class="text-4xl md:text-5xl font-bold text-indigo-500 mb-4 md:mb-0 space-glow">
+          Bytefix
+        </h1>
+      </a>
+      <!-- Navigation Menu -->
+      <nav>
+        <ul
+          class="flex flex-wrap justify-center gap-4 md:gap-8 text-lg md:text-xl"
+        >
+          <li>
+            <a
+              href="./index.html#about"
+              class="text-indigo-300 hover:text-indigo-400 transition duration-300 ease-in-out font-medium"
+              >About Us</a
+            >
+          </li>
+          <li>
+            <a
+              href="./index.html#goals"
+              class="text-indigo-300 hover:text-indigo-400 transition duration-300 ease-in-out font-medium"
+              >Our Goals</a
+            >
+          </li>
+          <li>
+            <a
+              href="./index.html#availability"
+              class="text-indigo-300 hover:text-indigo-400 transition duration-300 ease-in-out font-medium"
+              >Where We Are</a
+            >
+          </li>
+          <li>
+            <a
+              href="./index.html#contact"
+              class="text-indigo-300 hover:text-indigo-400 transition duration-300 ease-in-out font-medium"
+              >Get Help</a
+            >
+          </li>
+          <li>
+            <a
+              href="./volunteers.html"
+              class="text-indigo-300 hover:text-indigo-400 transition duration-300 ease-in-out font-medium gradient-border"
+              >Volunteers</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow mx-auto max-w-7xl px-4 md:px-8 mb-8">
+      <!-- Request Details Card -->
+      <div id="request-details" class="pane p-6 md:p-8 mb-8">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl md:text-3xl font-bold text-indigo-400">Request Details</h2>
+          <div id="request-status" class="status-badge status-queued">Queued</div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div>
+            <h3 class="text-lg font-semibold text-indigo-300 mb-2">Client Information</h3>
+            <div class="space-y-3">
+              <p><span class="text-gray-400">Name:</span> <span id="client-name" class="font-medium text-white">Loading...</span></p>
+              <p><span class="text-gray-400">Email:</span> <span id="client-email" class="font-medium text-white">Loading...</span></p>
+              <p><span class="text-gray-400">Submitted:</span> <span id="request-date" class="font-medium text-white">Loading...</span></p>
+            </div>
+          </div>
+          
+          <div>
+            <h3 class="text-lg font-semibold text-indigo-300 mb-2">Request Details</h3>
+            <div class="space-y-3">
+              <p><span class="text-gray-400">Request ID:</span> <span id="request-id" class="font-medium text-white">Loading...</span></p>
+              <p><span class="text-gray-400">Current Status:</span> <span id="status-text" class="font-medium text-white">Loading...</span></p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mb-8">
+          <h3 class="text-lg font-semibold text-indigo-300 mb-2">Message</h3>
+          <div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg">
+            <p id="request-message" class="text-white">Loading...</p>
+          </div>
+        </div>
+        
+        <!-- Status Update Section -->
+        <div id="status-update-section" class="mb-8">
+          <h3 class="text-lg font-semibold text-indigo-300 mb-4">Update Status</h3>
+          
+          <div class="flex flex-wrap gap-4">
+            <button id="btn-pending" class="action-button button-primary">
+              Mark as Pending
+            </button>
+            <button id="btn-resolved" class="action-button button-primary">
+              Mark as Resolved
+            </button>
+            <button id="btn-back" class="action-button button-secondary">
+              Back to Dashboard
+            </button>
+          </div>
+        </div>
+        
+        <!-- Log Entry Section (Initially Hidden) -->
+        <div id="log-entry-section" class="hidden mb-8">
+          <h3 class="text-lg font-semibold text-indigo-300 mb-4">Task Log</h3>
+          
+          <div class="space-y-4">
+            <div>
+              <label for="communication-method" class="block text-indigo-300 mb-2">How did you communicate with the client?</label>
+              <select id="communication-method" class="w-full bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-3 text-white">
+                <option value="">Select communication method</option>
+                <option value="email">Email</option>
+                <option value="phone">Phone</option>
+                <option value="in-person">In-person</option>
+                <option value="video-call">Video Call</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div>
+              <label for="tools-used" class="block text-indigo-300 mb-2">What tools did you use?</label>
+              <select id="tools-used" class="w-full bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-3 text-white">
+                <option value="">Select tools used</option>
+                <option value="hardware-diagnostics">Hardware Diagnostics</option>
+                <option value="software-troubleshooting">Software Troubleshooting</option>
+                <option value="virus-removal">Virus/Malware Removal</option>
+                <option value="data-recovery">Data Recovery</option>
+                <option value="software-installation">Software Installation</option>
+                <option value="training">Training/Education</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div>
+              <label for="log-notes" class="block text-indigo-300 mb-2">Additional Notes</label>
+              <textarea id="log-notes" rows="4" class="w-full bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-3 text-white" placeholder="Describe what you did to help the client..."></textarea>
+            </div>
+            
+            <div class="flex gap-4">
+              <button id="btn-submit-log" class="action-button button-primary">
+                Submit & Complete Task
+              </button>
+              <button id="btn-cancel-log" class="action-button button-secondary">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Task History Section -->
+        <div id="task-history-section" class="mb-8">
+          <h3 class="text-lg font-semibold text-indigo-300 mb-4">Task History</h3>
+          
+          <div id="history-container" class="space-y-4">
+            <!-- History items will be added here dynamically -->
+            <p class="text-gray-400 italic">No history available yet.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      class="pane py-8 px-4 md:px-8 text-center text-indigo-300 text-md mx-auto max-w-7xl mb-4"
+    >
+      <div class="max-w-6xl mx-auto space-y-2">
+        <p>&copy; 2025 Bytefix. All rights reserved.</p>
+        <p>Empowering communities, one fix at a time.</p>
+      </div>
+    </footer>
+
+    <script type="module">
+      // Import Firebase modules
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+      import {
+        getFirestore,
+        doc,
+        getDoc,
+        updateDoc,
+        arrayUnion,
+        Timestamp,
+      } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+      // Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDk5berY8qJUp01H7CgfAGief-gFHBFvNA",
+        authDomain: "bytefix-ec15b.firebaseapp.com",
+        projectId: "bytefix-ec15b",
+        storageBucket: "bytefix-ec15b.firebasestorage.app",
+        messagingSenderId: "505385365834",
+        appId: "1:505385365834:web:30cb0dfed96cdabe6551b3",
+        measurementId: "G-05RJS0F69F",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const db = getFirestore(app);
+      const auth = getAuth(app);
+
+      // DOM Elements
+      const requestIdElement = document.getElementById('request-id');
+      const clientNameElement = document.getElementById('client-name');
+      const clientEmailElement = document.getElementById('client-email');
+      const requestDateElement = document.getElementById('request-date');
+      const requestMessageElement = document.getElementById('request-message');
+      const requestStatusElement = document.getElementById('request-status');
+      const statusTextElement = document.getElementById('status-text');
+      const btnPending = document.getElementById('btn-pending');
+      const btnResolved = document.getElementById('btn-resolved');
+      const btnBack = document.getElementById('btn-back');
+      const logEntrySection = document.getElementById('log-entry-section');
+      const btnSubmitLog = document.getElementById('btn-submit-log');
+      const btnCancelLog = document.getElementById('btn-cancel-log');
+      const historyContainer = document.getElementById('history-container');
+
+      // Get request ID from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const requestId = urlParams.get('id');
+      
+      // Current request data
+      let currentRequest = null;
+      let currentUser = null;
+
+      // Check authentication state
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          currentUser = user;
+          // User is signed in, load request data
+          loadRequestData();
+        } else {
+          // User is not signed in, redirect to volunteers page
+          window.location.href = './volunteers.html';
+        }
+      });
+
+      // Load request data from Firestore
+      async function loadRequestData() {
+        if (!requestId) {
+          showError('No request ID provided');
+          return;
+        }
+
+        try {
+          const requestRef = doc(db, "requests", requestId);
+          const requestSnap = await getDoc(requestRef);
+
+          if (requestSnap.exists()) {
+            currentRequest = { id: requestSnap.id, ...requestSnap.data() };
+            displayRequestData(currentRequest);
+            updateUIBasedOnStatus(currentRequest.status);
+            loadTaskHistory(currentRequest);
+          } else {
+            showError('Request not found');
+          }
+        } catch (error) {
+          console.error("Error loading request:", error);
+          showError('Error loading request data');
+        }
+      }
+
+      // Display request data in the UI
+      function displayRequestData(request) {
+        requestIdElement.textContent = request.id;
+        clientNameElement.textContent = request.name;
+        clientEmailElement.textContent = request.email;
+        requestDateElement.textContent = new Date(request.sentAt).toLocaleString();
+        requestMessageElement.textContent = request.message;
+        
+        // Update status display
+        statusTextElement.textContent = request.status;
+        requestStatusElement.className = `status-badge status-${request.status}`;
+        requestStatusElement.textContent = request.status;
+      }
+
+      // Update UI based on current status
+      function updateUIBasedOnStatus(status) {
+        // Enable/disable buttons based on current status
+        if (status === 'queued') {
+          btnPending.disabled = false;
+          btnResolved.disabled = false;
+        } else if (status === 'pending') {
+          btnPending.disabled = true;
+          btnResolved.disabled = false;
+        } else if (status === 'resolved') {
+          btnPending.disabled = true;
+          btnResolved.disabled = true;
+        }
+
+        // Update button appearance
+        btnPending.classList.toggle('opacity-50', btnPending.disabled);
+        btnResolved.classList.toggle('opacity-50', btnResolved.disabled);
+      }
+
+      // Load task history
+      function loadTaskHistory(request) {
+        if (!request.history || request.history.length === 0) {
+          historyContainer.innerHTML = '<p class="text-gray-400 italic">No history available yet.</p>';
+          return;
+        }
+
+        historyContainer.innerHTML = '';
+        
+        // Sort history by timestamp (newest first)
+        const sortedHistory = [...request.history].sort((a, b) => b.timestamp.seconds - a.timestamp.seconds);
+        
+        sortedHistory.forEach(entry => {
+          const historyItem = document.createElement('div');
+          historyItem.className = 'bg-gray-800 bg-opacity-50 p-4 rounded-lg';
+          
+          const timestamp = entry.timestamp.toDate ? entry.timestamp.toDate() : new Date(entry.timestamp.seconds * 1000);
+          
+          historyItem.innerHTML = `
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <span class="font-semibold text-indigo-300">${entry.action}</span>
+                <span class="text-gray-400 text-sm ml-2">by ${entry.user}</span>
+              </div>
+              <span class="text-gray-400 text-sm">${timestamp.toLocaleString()}</span>
+            </div>
+            ${entry.notes ? `<p class="text-white">${entry.notes}</p>` : ''}
+            ${entry.communication ? `<p class="text-gray-300 text-sm mt-2">Communication: ${entry.communication}</p>` : ''}
+            ${entry.tools ? `<p class="text-gray-300 text-sm">Tools: ${entry.tools}</p>` : ''}
+          `;
+          
+          historyContainer.appendChild(historyItem);
+        });
+      }
+
+      // Show error message
+      function showError(message) {
+        const requestDetails = document.getElementById('request-details');
+        requestDetails.innerHTML = `
+          <div class="text-center py-12">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-red-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <h2 class="text-2xl font-bold text-red-400 mb-2">Error</h2>
+            <p class="text-white">${message}</p>
+            <button id="error-back-btn" class="action-button button-primary mt-6">
+              Back to Dashboard
+            </button>
+          </div>
+        `;
+        
+        document.getElementById('error-back-btn').addEventListener('click', () => {
+          window.location.href = './volunteers.html';
+        });
+      }
+
+      // Update request status
+      async function updateRequestStatus(newStatus, logData = null) {
+        if (!currentRequest) return;
+        
+        try {
+          const requestRef = doc(db, "requests", currentRequest.id);
+          
+          // Create history entry
+          const historyEntry = {
+            action: `Status changed to ${newStatus}`,
+            user: currentUser.email,
+            timestamp: Timestamp.now()
+          };
+          
+          // Add log data if provided
+          if (logData) {
+            historyEntry.notes = logData.notes;
+            historyEntry.communication = logData.communication;
+            historyEntry.tools = logData.tools;
+          }
+          
+          // Update the document
+          await updateDoc(requestRef, {
+            status: newStatus,
+            history: arrayUnion(historyEntry)
+          });
+          
+          // Reload request data
+          loadRequestData();
+          
+        } catch (error) {
+          console.error("Error updating request:", error);
+          alert("Error updating request status. Please try again.");
+        }
+      }
+
+      // Event Listeners
+      btnPending.addEventListener('click', () => {
+        updateRequestStatus('pending');
+        // Show log entry section when status is changed to pending
+        logEntrySection.classList.remove('hidden');
+      });
+
+      btnResolved.addEventListener('click', () => {
+        if (currentRequest.status === 'pending') {
+          // If already in pending status, show log form before resolving
+          logEntrySection.classList.remove('hidden');
+        } else {
+          // If in queued status, directly mark as resolved
+          updateRequestStatus('resolved');
+        }
+      });
+
+      btnBack.addEventListener('click', () => {
+        window.location.href = './volunteers.html';
+      });
+
+      btnSubmitLog.addEventListener('click', () => {
+        const communicationMethod = document.getElementById('communication-method').value;
+        const toolsUsed = document.getElementById('tools-used').value;
+        const logNotes = document.getElementById('log-notes').value;
+        
+        if (!communicationMethod || !toolsUsed || !logNotes) {
+          alert('Please fill in all fields');
+          return;
+        }
+        
+        const logData = {
+          communication: communicationMethod,
+          tools: toolsUsed,
+          notes: logNotes
+        };
+        
+        updateRequestStatus('resolved', logData);
+        logEntrySection.classList.add('hidden');
+      });
+
+      btnCancelLog.addEventListener('click', () => {
+        logEntrySection.classList.add('hidden');
+      });
+    </script>
+  </body>
+</html>
