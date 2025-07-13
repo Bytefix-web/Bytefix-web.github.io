@@ -1,0 +1,16 @@
+{
+  "name": "Bytefix - Community Tech Support",
+  "short_name": "Bytefix",
+  "description": "Bytefix connects communities with tech volunteers to solve digital problems and build tech literacy.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f1729",
+  "theme_color": "#4338ca",
+  "icons": [
+    {
+      "src": "images/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

@@ -3,8 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Bytefix connects communities with tech volunteers to solve digital problems and build tech literacy. Find free tech support and resources for your digital needs." />
+    <link rel="canonical" href="https://bytefix.org/" />
     <title>Bytefix - Navigating the Digital Universe</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bytefix.org/" />
+    <meta property="og:title" content="Bytefix - Navigating the Digital Universe" />
+    <meta property="og:description" content="Bytefix connects communities with tech volunteers to solve digital problems and build tech literacy. Find free tech support and resources for your digital needs." />
+    <meta property="og:image" content="https://bytefix.org/images/icon.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://bytefix.org/" />
+    <meta property="twitter:title" content="Bytefix - Navigating the Digital Universe" />
+    <meta property="twitter:description" content="Bytefix connects communities with tech volunteers to solve digital problems and build tech literacy. Find free tech support and resources for your digital needs." />
+    <meta property="twitter:image" content="https://bytefix.org/images/icon.png" />
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="./manifest.json" />
+    <meta name="theme-color" content="#4338ca" />
     <link rel="icon" type="image/x-icon" href="./images/icon.png" />
+    
+    <!-- Structured data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Bytefix",
+      "url": "https://bytefix.org",
+      "logo": "https://bytefix.org/images/icon.png",
+      "description": "Bytefix connects communities with tech volunteers to solve digital problems and build tech literacy.",
+      "sameAs": [
+        "https://facebook.com/bytefix",
+        "https://twitter.com/bytefix"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-800-555-0000",
+        "contactType": "customer service",
+        "availableLanguage": ["English", "Spanish"]
+      }
+    }
+    </script>
     <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -148,8 +190,18 @@
     </style>
   </head>
   <body class="antialiased">
+    <noscript>
+      <div class="p-4 bg-red-800 text-white text-center">
+        This website requires JavaScript to function properly. Please enable JavaScript in your browser settings.
+      </div>
+    </noscript>
+    
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-indigo-700 focus:text-white focus:rounded-md">Skip to main content</a>
+    
     <!-- Header Section - Top navigation and branding -->
     <header
+      role="banner"
       class="sticky p-4 md:p-6 top-0 z-50 flex flex-col md:flex-row justify-between items-center bg-gradient-to-r from-[#0a0e17] to-[#1a2b4a] border-b border-[#6366f1]/20 backdrop-blur-sm"
     >
       <!-- Site Title -->
@@ -161,7 +213,7 @@
         </h1>
       </a>
       <!-- Navigation Menu -->
-      <nav class="mt-4 md:mt-0">
+      <nav class="mt-4 md:mt-0" role="navigation" aria-label="Main navigation">
         <ul
           class="flex flex-wrap justify-center gap-6 md:gap-8 text-base md:text-lg"
         >
@@ -169,6 +221,7 @@
             <a
               href="#about"
               class="text-gray-300 hover:text-[#6366f1] transition duration-300 ease-in-out font-medium"
+              aria-label="Learn about Bytefix"
               >About Us</a
             >
           </li>
@@ -176,6 +229,7 @@
             <a
               href="#goals"
               class="text-gray-300 hover:text-[#6366f1] transition duration-300 ease-in-out font-medium"
+              aria-label="View our mission and goals"
               >Our Goals</a
             >
           </li>
@@ -183,6 +237,7 @@
             <a
               href="#availability"
               class="text-gray-300 hover:text-[#6366f1] transition duration-300 ease-in-out font-medium"
+              aria-label="Find Bytefix locations"
               >Where We Are</a
             >
           </li>
@@ -190,13 +245,15 @@
             <a
               href="#contact"
               class="text-gray-300 hover:text-[#6366f1] transition duration-300 ease-in-out font-medium"
+              aria-label="Request tech support"
               >Get Help</a
             >
           </li>
           <li>
             <a
               href="./volunteers.html"
-              class="px-4 py-2 bg-[#6366f1] text-white rounded-md hover:bg-[#4f46e5] transition duration-300 ease-in-out font-medium"
+              class="px-4 py-2 bg-[#4338ca] text-white rounded-md hover:bg-[#3730a3] transition duration-300 ease-in-out font-medium"
+              aria-label="Volunteer portal access"
               >Volunteers</a
             >
           </li>
@@ -206,6 +263,8 @@
 
     <!-- Main Hero Section - Empowering Communities Message -->
     <main
+      id="main-content"
+      role="main"
       class="relative min-h-[80vh] py-24 px-4 md:px-8 flex items-center justify-center mb-8 md:mb-12 mx-auto max-w-7xl overflow-hidden"
     >
       <!-- Space-themed background elements -->
@@ -541,7 +600,7 @@ Maheshwari is a New Delhi-based marketing and design enthusiast with experience 
               <input
               id="location"
               type="text"
-              placeholder="Location"
+              placeholder="Location (City, State/Country)"
               class="w-full p-3 bg-[#0a0e17] border border-[#6366f1]/30 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6366f1] text-gray-200 placeholder-gray-500"
             />
             </div>
@@ -786,6 +845,21 @@ Maheshwari is a New Delhi-based marketing and design enthusiast with experience 
         createStarField();
         addSpaceEffects();
       });
+    </script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./service-worker.js')
+            .then(registration => {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch(error => {
+              console.error('ServiceWorker registration failed: ', error);
+            });
+        });
+      }
     </script>
   </body>
 </html>

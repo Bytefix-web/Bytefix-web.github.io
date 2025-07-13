@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /volunteers.html
+
+# Disallow access to request details page as it requires authentication
+Disallow: /request.html
+
+# Sitemap location
+Sitemap: https://bytefix.org/sitemap.xml

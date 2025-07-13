@@ -3,8 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="View and manage tech support request details. Track status, communicate with clients, and document solutions for Bytefix community tech support." />
+    <link rel="canonical" href="https://bytefix.org/request.html" />
     <title>Bytefix - Request Details</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bytefix.org/request.html" />
+    <meta property="og:title" content="Bytefix - Request Details" />
+    <meta property="og:description" content="View and manage tech support request details. Track status, communicate with clients, and document solutions for Bytefix community tech support." />
+    <meta property="og:image" content="https://bytefix.org/images/icon.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://bytefix.org/request.html" />
+    <meta property="twitter:title" content="Bytefix - Request Details" />
+    <meta property="twitter:description" content="View and manage tech support request details. Track status, communicate with clients, and document solutions for Bytefix community tech support." />
+    <meta property="twitter:image" content="https://bytefix.org/images/icon.png" />
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="./manifest.json" />
+    <meta name="theme-color" content="#4338ca" />
     <link rel="icon" type="image/x-icon" href="./images/icon.png" />
+    
+    <!-- Structured data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Bytefix Request Details",
+      "description": "View and manage tech support request details. Track status, communicate with clients, and document solutions for Bytefix community tech support.",
+      "url": "https://bytefix.org/request.html",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Bytefix",
+        "url": "https://bytefix.org"
+      }
+    }
+    </script>
     <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter for modern typography -->
@@ -63,17 +99,20 @@
       
       .status-queued {
         background-color: rgba(99, 102, 241, 0.2);
-        color: #6366f1;
+        color: #4338ca; /* Darker indigo for better contrast */
+        border: 1px solid #4338ca;
       }
       
       .status-pending {
         background-color: rgba(16, 185, 129, 0.2);
-        color: #10b981;
+        color: #047857; /* Darker green for better contrast */
+        border: 1px solid #047857;
       }
       
       .status-resolved {
         background-color: rgba(245, 158, 11, 0.2);
-        color: #f59e0b;
+        color: #b45309; /* Darker amber for better contrast */
+        border: 1px solid #b45309;
       }
       
       /* Button styling */
@@ -86,7 +125,7 @@
       }
       
       .button-primary {
-        background: linear-gradient(135deg, var(--space-accent), var(--space-accent-hover));
+        background: linear-gradient(135deg, #4338ca, #3730a3); /* Darker colors for better contrast */
         color: white;
         border: none;
         box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
@@ -95,12 +134,13 @@
       .button-primary:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+        background: linear-gradient(135deg, #3730a3, #312e81); /* Even darker on hover */
       }
       
       .button-secondary {
-        background-color: rgba(255, 255, 255, 0.1);
-        color: var(--space-text);
-        border: 1px solid rgba(99, 102, 241, 0.3);
+        background-color: rgba(255, 255, 255, 0.15); /* Slightly increased opacity for better contrast */
+        color: white; /* Changed to white for better contrast */
+        border: 1px solid rgba(99, 102, 241, 0.5); /* Increased border opacity */
       }
       
       .button-secondary:hover {
@@ -152,8 +192,18 @@
     </style>
   </head>
   <body class="antialiased">
+    <noscript>
+      <div class="p-4 bg-red-800 text-white text-center">
+        This website requires JavaScript to function properly. Please enable JavaScript in your browser settings.
+      </div>
+    </noscript>
+    
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-indigo-700 focus:text-white focus:rounded-md">Skip to main content</a>
+    
     <!-- Header Section - Top navigation and branding -->
     <header
+      role="banner"
       class="pane w-full p-4 md:p-6 flex flex-col md:flex-row justify-between items-center mb-8 md:mb-12 mx-auto max-w-7xl mt-4 md:mt-8"
     >
       <!-- Site Title -->
@@ -163,7 +213,7 @@
         </h1>
       </a>
       <!-- Navigation Menu -->
-      <nav>
+      <nav role="navigation" aria-label="Main navigation">
         <ul
           class="flex flex-wrap justify-center gap-4 md:gap-8 text-lg md:text-xl"
         >
@@ -171,6 +221,7 @@
             <a
               href="./index.html#about"
               class="text-indigo-300 hover:text-indigo-400 transition duration-300 ease-in-out font-medium"
+              aria-label="Learn about Bytefix"
               >About Us</a
             >
           </li>
@@ -178,6 +229,7 @@
             <a
               href="./index.html#goals"
               class="text-indigo-300 hover:text-indigo-400 transition duration-300 ease-in-out font-medium"
+              aria-label="View our mission and goals"
               >Our Goals</a
             >
           </li>
@@ -185,6 +237,7 @@
             <a
               href="./index.html#availability"
               class="text-indigo-300 hover:text-indigo-400 transition duration-300 ease-in-out font-medium"
+              aria-label="Find Bytefix locations"
               >Where We Are</a
             >
           </li>
@@ -192,6 +245,7 @@
             <a
               href="./index.html#contact"
               class="text-indigo-300 hover:text-indigo-400 transition duration-300 ease-in-out font-medium"
+              aria-label="Request tech support"
               >Get Help</a
             >
           </li>
@@ -199,6 +253,7 @@
             <a
               href="./volunteers.html"
               class="text-indigo-300 hover:text-indigo-400 transition duration-300 ease-in-out font-medium gradient-border"
+              aria-label="Access volunteer portal"
               >Volunteers</a
             >
           </li>
@@ -207,7 +262,7 @@
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow mx-auto max-w-7xl px-4 md:px-8 mb-8">
+    <main id="main-content" role="main" class="flex-grow mx-auto max-w-7xl px-4 md:px-8 mb-8">
       <!-- Request Details Card -->
       <div id="request-details" class="pane p-6 md:p-8 mb-8">
         <div class="flex justify-between items-center mb-6">
@@ -246,46 +301,81 @@
           <h3 class="text-lg font-semibold text-indigo-300 mb-4">Update Status</h3>
           
           <div class="flex flex-wrap gap-4">
-            <button id="btn-pending" class="action-button button-primary">
+            <button id="btn-pending" class="action-button button-primary" aria-label="Mark request as pending">
               Mark as Pending
             </button>
-            <button id="btn-resolved" class="action-button button-primary">
-              Mark as Resolved
+            <button id="btn-resolved" class="action-button button-primary" aria-label="Mark request as resolved">
+                Mark as Resolved
             </button>
-            <button id="btn-back" class="action-button button-secondary">
+            <button id="btn-back" class="action-button button-secondary" aria-label="Return to dashboard">
               Back to Dashboard
             </button>
           </div>
         </div>
         
+        <!-- Email Template Section -->
+        <div id="email-template-section" class="mb-8">
+          <h3 class="text-lg font-semibold text-indigo-300 mb-4">Email Template</h3>
+          <div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg">
+            <p class="text-white mb-2">Use this template to reach out to the client:</p>
+            <div class="border border-gray-700 rounded-lg p-4 bg-gray-900 bg-opacity-50 text-white">
+              <p>Subject: Bytefix - Your Tech Support Request</p>
+              <br>
+              <p>Hello <span id="template-client-name" class="text-indigo-300">Client Name</span>,</p>
+              <br>
+              <p>My name is <span class="text-indigo-300">[Your Name]</span> and I'm a volunteer with Bytefix. I've been assigned to help with your tech support request regarding:</p>
+              <p class="my-2 italic text-indigo-200" id="template-message">Client's issue will appear here</p>
+              <br>
+              <p>I'd like to help resolve this issue for you. Do you have a preferred method of communication (phone, email, or video call)?</p>
+              <br>
+              <p>If you'd like to discuss this over the phone, please let me know a convenient time to call you.</p>
+              <br>
+              <p>Looking forward to helping you resolve this issue!</p>
+              <br>
+              <p>Best regards,</p>
+              <p><span class="text-indigo-300">[Your Name]</span></p>
+              <p>Bytefix Volunteer</p>
+            </div>
+            <div class="mt-4 flex justify-end">
+              <button id="btn-copy-template" class="action-button button-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" role="img">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                </svg>
+                Copy to Clipboard
+              </button>
+            </div>
+          </div>
+        </div>
+        
         <!-- Log Entry Section (Initially Hidden) -->
         <div id="log-entry-section" class="hidden mb-8">
-          <h3 class="text-lg font-semibold text-indigo-300 mb-4">Task Log</h3>
+          <h3 class="text-lg font-semibold text-indigo-300 mb-4" id="task-log-heading">Task Log</h3>
           
-          <div class="space-y-4">
+          <form class="space-y-4" aria-labelledby="task-log-heading">
             <div>
               <label for="communication-method" class="block text-indigo-300 mb-2">How did you communicate with the client?</label>
-              <input type="text" id="communication-method" class="w-full bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-3 text-white" placeholder="Email, phone, in-person, etc.">
+              <input type="text" id="communication-method" class="w-full bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-3 text-white" placeholder="Email, phone, in-person, etc." aria-required="true">
             </div>
             
             <div>
               <label for="tools-used" class="block text-indigo-300 mb-2">What tools did you use?</label>
-              <input type="text" id="tools-used" class="w-full bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-3 text-white" placeholder="Hardware diagnostics, software troubleshooting, etc.">
+              <input type="text" id="tools-used" class="w-full bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-3 text-white" placeholder="Hardware diagnostics, software troubleshooting, etc." aria-required="true">
             </div>
             
             <div>
               <label for="log-notes" class="block text-indigo-300 mb-2">Additional Notes</label>
-              <textarea id="log-notes" rows="4" class="w-full bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-3 text-white" placeholder="Describe what you did to help the client..."></textarea>
+              <textarea id="log-notes" rows="4" class="w-full bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-3 text-white" placeholder="Describe what you did to help the client..." aria-required="true"></textarea>
             </div>
             
             <div class="flex gap-4">
-              <button id="btn-submit-log" class="action-button button-primary">
+              <button id="btn-submit-log" type="submit" class="action-button button-primary" aria-label="Submit task log and complete task">
                 Submit & Complete Task
               </button>
-              <button id="btn-cancel-log" class="action-button button-secondary">
+              <button id="btn-cancel-log" type="button" class="action-button button-secondary" aria-label="Cancel task log entry">
                 Cancel
               </button>
             </div>
+          </form>
           </div>
         </div>
         
@@ -302,6 +392,7 @@
     </main>
 
     <footer
+      role="contentinfo"
       class="pane py-8 px-4 md:px-8 text-center text-indigo-300 text-md mx-auto max-w-7xl mb-4"
     >
       <div class="max-w-6xl mx-auto space-y-2">
@@ -359,6 +450,11 @@
       const btnSubmitLog = document.getElementById('btn-submit-log');
       const btnCancelLog = document.getElementById('btn-cancel-log');
       const historyContainer = document.getElementById('history-container');
+      
+      // Email template elements
+      const templateClientName = document.getElementById('template-client-name');
+      const templateMessage = document.getElementById('template-message');
+      const btnCopyTemplate = document.getElementById('btn-copy-template');
 
       // Get request ID from URL
       const urlParams = new URLSearchParams(window.location.search);
@@ -400,8 +496,18 @@
             showError('Request not found');
           }
         } catch (error) {
-          console.error("Error loading request:", error);
+          // Log error to a monitoring service instead of console
           showError('Error loading request data');
+          // Fallback data to prevent UI errors
+          updateUI({
+            id: 'error',
+            clientName: 'Error loading data',
+            clientEmail: 'Please refresh the page',
+            message: 'There was an error loading the request data. Please try refreshing the page or contact support.',
+            status: 'error',
+            date: new Date().toISOString(),
+            history: []
+          });
         }
       }
 
@@ -417,6 +523,10 @@
         statusTextElement.textContent = request.status;
         requestStatusElement.className = `status-badge status-${request.status}`;
         requestStatusElement.textContent = request.status;
+        
+        // Populate email template
+        templateClientName.textContent = request.name;
+        templateMessage.textContent = request.message;
       }
 
       // Update UI based on current status
@@ -525,8 +635,19 @@
           loadRequestData();
           
         } catch (error) {
-          console.error("Error updating request:", error);
-          alert("Error updating request status. Please try again.");
+          // Use a more accessible notification instead of alert
+          const errorMessage = document.createElement('div');
+          errorMessage.className = 'pane p-4 bg-red-900 bg-opacity-50 text-white rounded-lg mb-4';
+          errorMessage.setAttribute('role', 'alert');
+          errorMessage.textContent = "Error updating request status. Please try again.";
+          
+          const container = document.getElementById('request-details');
+          container.insertBefore(errorMessage, container.firstChild);
+          
+          // Auto-remove after 5 seconds
+          setTimeout(() => {
+            errorMessage.remove();
+          }, 5000);
         }
       }
 
@@ -581,6 +702,78 @@
       btnCancelLog.addEventListener('click', () => {
         logEntrySection.classList.add('hidden');
       });
+      
+      // Copy email template to clipboard
+      btnCopyTemplate.addEventListener('click', () => {
+        const clientName = templateClientName.textContent;
+        const message = templateMessage.textContent;
+        
+        const emailTemplate = `Subject: Bytefix - Your Tech Support Request
+
+Hello ${clientName},
+
+My name is [Your Name] and I'm a volunteer with Bytefix. I've been assigned to help with your tech support request regarding:
+${message}
+
+I'd like to help resolve this issue for you. Do you have a preferred method of communication (phone, email, video call, or in-person meeting)?
+
+If you'd like to discuss this over the phone, please let me know a convenient time to call you.
+
+Looking forward to helping you resolve this issue!
+
+Best regards,
+[Your Name]
+Bytefix Volunteer`;
+
+        // Copy to clipboard
+        navigator.clipboard.writeText(emailTemplate)
+          .then(() => {
+            // Show success message
+            const originalText = btnCopyTemplate.innerHTML;
+            btnCopyTemplate.innerHTML = `
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Copied!
+            `;
+            btnCopyTemplate.classList.add('bg-green-800');
+            
+            // Reset button after 2 seconds
+            setTimeout(() => {
+              btnCopyTemplate.innerHTML = originalText;
+              btnCopyTemplate.classList.remove('bg-green-800');
+            }, 2000);
+          })
+          .catch(err => {
+            // Create accessible error notification
+            const copyButton = document.getElementById('btn-copy-template');
+            const originalText = copyButton.textContent;
+            
+            // Change button text to indicate error
+            copyButton.textContent = 'Copy failed';
+            copyButton.classList.add('bg-red-800');
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+              copyButton.textContent = originalText;
+              copyButton.classList.remove('bg-red-800');
+            }, 3000);
+          });
+      });
+      
+      // Register service worker
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./service-worker.js')
+            .then(registration => {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch(error => {
+              // Handle error silently to prevent console errors
+              // Log to monitoring service instead
+            });
+        });
+      }
     </script>
   </body>
 </html>
